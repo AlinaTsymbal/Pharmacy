@@ -1,3 +1,60 @@
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
-# Create your models here.
+from pharmacy import settings
+
+
+class Pharmacy(models.Model):
+    name = models.TextField()
+    address = models.TextField()
+    phone = models.TextField()
+
+    class Meta:
+        db_table = 'pharmacy'
+
+
+class Category(models.Model):
+    name = models.TextField()
+
+    class Meta:
+        db_table = 'category'
+
+
+class RemedySet(models.Model):
+    name = models.TextField()
+    description = models.TextField()
+
+    class Meta:
+        db_table = 'remedy_set'
+
+
+class Remedy(models.Model):
+    name = models.TextField()
+    description = models.TextField()
+    categories = models.ManyToManyField(Category, 'remedies', db_table='category_remedy')
+    pharmacies = models.ManyToManyField(Pharmacy, 'remedies', db_table='pharmacy_remedy')
+    sets = models.ManyToManyField(RemedySet, 'remedies', db_table='remedy_set_remedy')
+
+    class Meta:
+        db_table = 'remedy'
+
+
+class AuthUser(AbstractUser):
+    class Meta:
+        db_table = 'user'
+
+
+class Client(AuthUser):
+    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True,  related_name='user_data')
+    phone = models.TextField()
+
+    class Meta:
+        db_table = 'client'
+
+
+class Basket(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    remedies = models.ManyToManyField(Remedy, 'baskets', db_table='user_basket_remedy')
+
+    class Meta:
+        db_table = 'user_basket'
