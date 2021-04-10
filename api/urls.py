@@ -1,7 +1,7 @@
 from django.urls import path
 
-from api.views import TestView
+from api.views import RemediesView
 
 urlpatterns = [
-    path('test', TestView.as_view()),
+    path('remedies', RemediesView.as_view()),
 ]
