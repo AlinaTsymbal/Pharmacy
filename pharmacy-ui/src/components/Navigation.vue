@@ -1,5 +1,5 @@
 <template>
-  <a-tabs default-active-key="1" @change="forward">
+  <a-tabs :active-key="activeKey" @change="forward">
     <a-tab-pane key="home" tab="Home page"/>
     <a-tab-pane key="catalog" tab="Catalog"/>
     <a-tab-pane key="sets" tab="Remedy sets"/>
@@ -13,7 +13,19 @@ export default {
   name: 'Navigation',
   methods: {
     forward(key) {
+      this.activeKey = key;
       this.$router.push(key);
+    },
+  },
+  data() {
+    return {
+      activeKey: 'home',
+    };
+  },
+  watch: {
+    $route(to, from) {
+      // eslint-disable-next-line prefer-destructuring
+      this.activeKey = to.path.split('/')[1];
     },
   },
 };

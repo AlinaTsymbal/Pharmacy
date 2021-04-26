@@ -4,8 +4,8 @@ module.exports = {
     node: true,
   },
   extends: [
+    'airbnb-base',
     'plugin:vue/essential',
-    '@vue/airbnb',
     '@vue/typescript/recommended',
   ],
   parserOptions: {

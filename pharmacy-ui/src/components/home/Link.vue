@@ -1,6 +1,8 @@
 <template>
   <div class="link" @click="onclick">
-    <p>{{ title }}</p>
+    <div class="link-name-wrapper">
+      <span >{{ title }}</span>
+    </div>
   </div>
 </template>
 
@@ -18,10 +20,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .link {
-  width: 15rem;
-  height: 15rem;
-  background-color: red;
+  width: 20rem;
+  height: 20rem;
+  background-image: url('../../assets/image-placeholder.png');
+  background-size: cover;
+  border: 1px solid black;
+  border-radius: 1rem;
+
+  .link-name-wrapper {
+    margin-top: 1rem;
+    span {
+      font-size: large;
+      font-weight: bold;
+      text-shadow: black;
+    }
+  }
 }
 </style>
