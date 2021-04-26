@@ -1,7 +1,7 @@
 <template>
   <div id="router-view-wrapper">
     <Navigation/>
-    <router-view/>
+    <router-view class="page-content-wrapper"/>
   </div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+#router-view-wrapper {
+  .page-content-wrapper {
+    padding: 4rem;
+  }
+}
 </style>

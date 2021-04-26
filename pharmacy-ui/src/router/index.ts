@@ -3,13 +3,14 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import About from '@/views/About.vue';
 import RouterView from '@/views/TheRouterView.vue';
 import HomePage from '@/views/HomePage.vue';
+import CatalogPage from '@/views/CatalogPage.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    redirect: '/about',
+    redirect: '/home',
   },
   {
     path: '/',
@@ -23,7 +24,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'catalog',
         name: 'Catalog',
-        component: About,
+        component: CatalogPage,
       },
       {
         path: 'sets',

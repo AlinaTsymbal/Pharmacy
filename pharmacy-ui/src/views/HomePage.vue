@@ -39,6 +39,6 @@ export default {
 }
 
 .home-page-wrapper > * {
-  margin-top: 2rem;
+  padding: 2rem;
 }
 </style>
