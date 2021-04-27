@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Basket from "@/components/Basket";
+import Basket from "@/components/common/Basket";
 export default {
   name: 'Navigation',
   components: {Basket},

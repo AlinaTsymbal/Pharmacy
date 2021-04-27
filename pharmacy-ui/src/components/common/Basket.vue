@@ -11,7 +11,7 @@ export default {
   name: 'Basket',
   computed: {
     isEmpty() {
-      return this.items.length === 0
+      return this.items.length === 0;
     },
   },
   props: {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Navigation from '@/components/Navigation.vue';
+import Navigation from '@/components/common/Navigation.vue';
 
 export default {
   name: 'TheRouterView',
