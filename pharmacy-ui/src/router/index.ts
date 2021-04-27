@@ -6,6 +6,7 @@ import HomePage from '@/views/HomePage.vue';
 import CatalogPage from '@/views/CatalogPage.vue';
 import RemedySetsPage from '@/views/RemedySetsPage.vue';
 import MedKitsPage from '@/views/MedKitsPage.vue';
+import AuthorizationPage from '@/views/AuthorizationPage';
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,11 @@ const routes: Array<RouteConfig> = [
         path: 'about',
         name: 'About',
         component: About,
+      },
+      {
+        path: 'authorization',
+        name: 'Authorization',
+        component: AuthorizationPage,
       },
     ],
   },

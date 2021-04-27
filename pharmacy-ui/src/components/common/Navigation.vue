@@ -9,24 +9,30 @@
     </a-tabs>
     <div class="additional-links-wrapper">
       <div class="authorization-links">
-        <a>Login/Register</a>
+        <a @click="redirectLogin">Login/Register</a>
       </div>
       <a-popover title="Basket" trigger="hover">
         <template slot="content">
           <Basket :items="[]"/>
         </template>
-        <a type="primary" class="basket-popup-trigger"> Hover me</a>
+        <a type="primary" class="basket-popup-trigger"> Basket </a>
       </a-popover>
     </div>
   </div>
 </template>
 
 <script>
-import Basket from "@/components/common/Basket";
+import Basket from '@/components/common/Basket';
+
 export default {
   name: 'Navigation',
-  components: {Basket},
+  components: {
+    Basket,
+  },
   methods: {
+    redirectLogin() {
+      this.$router.push('authorization');
+    },
     forward(key) {
       this.activeKey = key;
       this.$router.push(key);
