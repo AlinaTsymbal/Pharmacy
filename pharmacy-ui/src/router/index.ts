@@ -33,8 +33,8 @@ const routes: Array<RouteConfig> = [
         component: RemedySetsPage,
       },
       {
-        path: 'pharmacies',
-        name: 'Pharmacies',
+        path: 'med-kits',
+        name: 'Med kits',
         component: About,
       },
       {

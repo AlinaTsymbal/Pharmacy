@@ -3,7 +3,7 @@
     <a-tab-pane key="home" tab="Home page"/>
     <a-tab-pane key="catalog" tab="Catalog"/>
     <a-tab-pane key="sets" tab="Remedy sets"/>
-    <a-tab-pane key="pharmacies" tab="Mini-pharmacies"/>
+    <a-tab-pane key="med-kits" tab="Med kits"/>
     <a-tab-pane key="about" tab="About service"/>
   </a-tabs>
 </template>
