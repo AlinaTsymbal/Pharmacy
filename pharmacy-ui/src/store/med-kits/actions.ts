@@ -1,0 +1,2 @@
+export const GET_MED_KITS = 'GET_MED_KITS';
+export const GET_MED_KIT_DETAILS = 'GET_MED_KIT_DETAILS';

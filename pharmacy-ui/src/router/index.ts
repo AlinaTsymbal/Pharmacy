@@ -5,6 +5,7 @@ import RouterView from '@/views/TheRouterView.vue';
 import HomePage from '@/views/HomePage.vue';
 import CatalogPage from '@/views/CatalogPage.vue';
 import RemedySetsPage from '@/views/RemedySetsPage.vue';
+import MedKitsPage from '@/views/MedKitsPage.vue';
 
 Vue.use(VueRouter);
 
@@ -35,7 +36,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'med-kits',
         name: 'Med kits',
-        component: About,
+        component: MedKitsPage,
       },
       {
         path: 'about',
