@@ -2,7 +2,7 @@
   <div class="links-wrapper">
     <Link title="Catalog"/>
     <Link title="Sets"/>
-    <Link title="Pharmacies"/>
+    <Link title="Med-kits"/>
   </div>
 </template>
 
