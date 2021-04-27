@@ -1,5 +1,5 @@
 <template>
-  <a-card class="remedy-item-wrapper">
+  <a-card>
     <div class="remedy-image-wrapper">
       <img
         v-if="!imagePresent"
@@ -32,18 +32,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.remedy-item-wrapper {
+.ant-card {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 25rem;
-  height: 25rem;
-  padding: 1rem;
 
   .remedy-image-wrapper {
+    height: 60%;
     img {
       padding: 1rem;
-      width: 20rem;
-      height: 18rem;
+      width: 100%;
+      height: 100%;
     }
   }
 
@@ -61,4 +61,7 @@ export default {
     justify-content: space-between;
   }
 }
+
+
+
 </style>

@@ -79,6 +79,10 @@ export default {
   display: flex;
   flex-direction: row;
 
+  .remedy-list {
+    height: 60rem;
+  }
+
   .categories-menu {
     width: 20rem;
     height: inherit;

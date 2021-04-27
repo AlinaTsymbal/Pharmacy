@@ -17,7 +17,14 @@ import Links from '@/components/home/Links.vue';
 
 export default {
   name: 'HomePage',
-  components: { Links },
+  components: {
+    Links,
+  },
+  methods: {
+    onSearch() {
+      console.log('search');
+    },
+  },
 };
 </script>
 

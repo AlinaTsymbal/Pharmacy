@@ -4,6 +4,7 @@ import About from '@/views/About.vue';
 import RouterView from '@/views/TheRouterView.vue';
 import HomePage from '@/views/HomePage.vue';
 import CatalogPage from '@/views/CatalogPage.vue';
+import RemedySetsPage from '@/views/RemedySetsPage.vue';
 
 Vue.use(VueRouter);
 
@@ -29,7 +30,7 @@ const routes: Array<RouteConfig> = [
       {
         path: 'sets',
         name: 'RemedySets',
-        component: About,
+        component: RemedySetsPage,
       },
       {
         path: 'pharmacies',

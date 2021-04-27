@@ -1,23 +1,23 @@
 <template>
-  <div class="remedy-list">
+  <div class="remedy-set-remedies">
     <div
-      class="remedy-item-wrapper"
       v-for="item in remedies"
+      class="remedy-item-wrapper"
       :key="item.id"
     >
       <RemedyItem
-        style="height: 25rem"
         :remedy="item"
+        style="height: 17rem"
       />
     </div>
   </div>
 </template>
 
 <script>
-import RemedyItem from './RemedyItem.vue';
+import RemedyItem from '../catalog/RemedyItem.vue';
 
 export default {
-  name: 'RemedyList',
+  name: 'RemedySetRemedies',
   components: {
     RemedyItem,
   },
@@ -28,18 +28,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.remedy-list {
+.remedy-set-remedies {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
 
   .remedy-item-wrapper {
-    width: 28%;
+    margin: 1.5rem;
+    width: 17%;
   }
-}
-
-.remedy-list > * {
-  margin: 2rem;
 }
 </style>
