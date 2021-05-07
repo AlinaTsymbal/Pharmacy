@@ -11,5 +11,5 @@
 - model: api.remedyset
   pk: 3
   fields:
-    name: Cagegory 3
+    name: Remedy set 3
     description: Description of remedy set No 3

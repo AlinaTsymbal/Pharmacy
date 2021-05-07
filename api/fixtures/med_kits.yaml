@@ -1,0 +1,15 @@
+- model: api.medkit
+  pk: 1
+  fields:
+    name: Med kit 1
+    description: Description of med kit No 1
+- model: api.medkit
+  pk: 2
+  fields:
+    name: Med kit 2
+    description: Description of med kit No 2
+- model: api.medkit
+  pk: 3
+  fields:
+    name: Med kit 3
+    description: Description of med kit No 3

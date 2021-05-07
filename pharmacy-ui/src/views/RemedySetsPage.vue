@@ -4,7 +4,7 @@
       <span>Placeholder</span>
     </div>
     <RemedySet
-      v-for="item in sets"
+      v-for="item in remedySets"
       :key="item.id"
       :set="item"
     />
@@ -13,65 +13,21 @@
 
 <script>
 import RemedySet from '../components/sets/RemedySet.vue';
+import {mapGetters} from 'vuex';
+import {GET_REMEDY_SETS} from "@/store/remedy-sets/actions";
 
 export default {
   name: 'RemedySetsPage',
   components: {
     RemedySet,
   },
-  data() {
-    return {
-      sets: [
-        {
-          id: 1,
-          name: 'Remedy set 1',
-          info: 'Remedy set 1',
-          remedies: this.sampleRemedies(),
-        },
-        {
-          id: 2,
-          name: 'Remedy set 2',
-          info: 'Remedy set 2',
-          remedies: this.sampleRemedies(),
-        },
-        {
-          id: 3,
-          name: 'Remedy set 3',
-          info: 'Remedy set 3',
-          remedies: this.sampleRemedies(),
-        },
-      ],
-    };
+  computed: {
+    ...mapGetters([
+      'remedySets',
+    ]),
   },
-  methods: {
-    sampleRemedies() {
-      return [
-        {
-          id: 1,
-          name: 'Remedy 1',
-        },
-        {
-          id: 2,
-          name: 'Remedy 2',
-        },
-        {
-          id: 3,
-          name: 'Remedy 3',
-        },
-        {
-          id: 4,
-          name: 'Remedy 4',
-        },
-        {
-          id: 5,
-          name: 'Remedy 5',
-        },
-        {
-          id: 6,
-          name: 'Remedy 6',
-        },
-      ];
-    },
+  mounted() {
+    this.$store.dispatch(GET_REMEDY_SETS);
   },
 };
 </script>

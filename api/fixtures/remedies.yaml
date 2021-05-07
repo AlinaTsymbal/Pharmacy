@@ -4,7 +4,8 @@
     name: Remedy 1
     description: Description of remedy No 1
     categories: [ 1, 2 ]
-    sets: [1, 2]
+    sets: [ 1, 2 ]
+    med_kits: [ 1, 2 ]
 - model: api.remedy
   pk: 2
   fields:
@@ -12,6 +13,7 @@
     description: Description of remedy No 2
     categories: [ 2, 3 ]
     sets: [ 2, 3 ]
+    med_kits: [ 2, 3 ]
 - model: api.remedy
   pk: 3
   fields:
@@ -19,6 +21,7 @@
     description: Description of remedy No 3
     categories: [ 3, 4 ]
     sets: [ 3, 2 ]
+    med_kits: [ 3, 2 ]
 - model: api.remedy
   pk: 4
   fields:
@@ -26,6 +29,8 @@
     description: Description of remedy No 4
     categories: [ 4, 5 ]
     sets: [ 2, 1 ]
+    med_kits: [ 2, 1 ]
+
 - model: api.remedy
   pk: 5
   fields:
@@ -33,6 +38,7 @@
     description: Description of remedy No 5
     categories: [ 5, 6 ]
     sets: [ 1, 2 ]
+    med_kits: [ 1, 2 ]
 - model: api.remedy
   pk: 6
   fields:
@@ -40,6 +46,7 @@
     description: Description of remedy No 6
     categories: [ 6, 7 ]
     sets: [ 2, 3 ]
+    med_kits: [ 2, 3 ]
 - model: api.remedy
   pk: 7
   fields:
@@ -47,4 +54,4 @@
     description: Description of remedy No 7
     categories: [ 6, 7 ]
     sets: [ 3, 2 ]
-
+    med_kits: [ 3, 2 ]

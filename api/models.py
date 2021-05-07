@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 
-from pharmacy import settings
-
 
 class Pharmacy(models.Model):
     name = models.TextField()
@@ -28,12 +26,21 @@ class RemedySet(models.Model):
         db_table = 'remedy_set'
 
 
+class MedKit(models.Model):
+    name = models.TextField()
+    description = models.TextField()
+
+    class Meta:
+        db_table = 'med_kit'
+
+
 class Remedy(models.Model):
     name = models.TextField()
     description = models.TextField()
     categories = models.ManyToManyField(Category, 'remedies', db_table='category_remedy')
     pharmacies = models.ManyToManyField(Pharmacy, 'remedies', db_table='pharmacy_remedy')
     sets = models.ManyToManyField(RemedySet, 'remedies', db_table='remedy_set_remedy')
+    med_kits = models.ManyToManyField(MedKit, 'remedies', db_table='med_kit_remedy')
 
     class Meta:
         db_table = 'remedy'
@@ -45,7 +52,7 @@ class AuthUser(AbstractUser):
 
 
 class Client(AuthUser):
-    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True,  related_name='user_data')
+    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='user_data')
     phone = models.TextField()
 
     class Meta:
