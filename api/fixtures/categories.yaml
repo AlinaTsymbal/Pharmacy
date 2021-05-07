@@ -1,0 +1,28 @@
+- model: api.category
+  pk: 1
+  fields:
+    name: Cagegory 1
+- model: api.category
+  pk: 2
+  fields:
+    name: Cagegory 2
+- model: api.category
+  pk: 3
+  fields:
+    name: Cagegory 3
+- model: api.category
+  pk: 4
+  fields:
+    name: Cagegory 4
+- model: api.category
+  pk: 5
+  fields:
+    name: Cagegory 5
+- model: api.category
+  pk: 6
+  fields:
+    name: Cagegory 6
+- model: api.category
+  pk: 7
+  fields:
+    name: Cagegory 7
