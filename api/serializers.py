@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Remedy, Category
+from api.models import Remedy, Category, RemedySet
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -18,4 +18,16 @@ class ShortRemedySerializer(serializers.ModelSerializer):
         fields = [
             'name',
             'description',
+        ]
+
+class RemedySetSerializer(serializers.ModelSerializer):
+    remedies = ShortRemedySerializer(many=True)
+
+    class Meta:
+        model = RemedySet
+        fields = [
+            'id',
+            'name',
+            'description',
+            'remedies',
         ]
