@@ -1,0 +1,15 @@
+- model: api.remedyset
+  pk: 1
+  fields:
+    name: Remedy set 1
+    description: Description of remedy set No 1
+- model: api.remedyset
+  pk: 2
+  fields:
+    name: Remedy set 2
+    description: Description of remedy set No 2
+- model: api.remedyset
+  pk: 3
+  fields:
+    name: Cagegory 3
+    description: Description of remedy set No 3
