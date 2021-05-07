@@ -37,14 +37,26 @@ export default {
       return this.remedies;
     },
   },
+  data() {
+    return {
+      selectedCategories: [],
+    };
+  },
   methods: {
     onCategorySelect(selectedCategories) {
-      this.$store.dispatch(GET_REMEDIES, {categories: selectedCategories});
+      this.selectedCategories = selectedCategories;
+      this.filter();
     },
+    filter() {
+      this.$store.dispatch(GET_REMEDIES, {categories: this.selectedCategories});
+    },
+  },
+  activated() {
+    this.filter();
   },
   mounted() {
     this.$store.dispatch(GET_CATEGORIES);
-    this.$store.dispatch(GET_REMEDIES);
+    this.filter();
   },
 };
 </script>
