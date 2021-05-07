@@ -43,6 +43,9 @@ export default {
       activeKey: 'home',
     };
   },
+  mounted() {
+    this.activeKey = this.$router.currentRoute.path.split('/')[1];
+  },
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
