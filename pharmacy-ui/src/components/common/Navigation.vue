@@ -59,6 +59,11 @@ export default {
 
 <style scoped lang="scss">
 .navigation-wrapper {
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 9;
+
   .additional-links-wrapper {
     display: flex;
     flex-direction: row;
