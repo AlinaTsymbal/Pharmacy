@@ -33,8 +33,17 @@ const actions = {
         console.log(err);
       });
   },
-  [GET_REMEDIES]: (context: any, params: object) => {
-    Api.get('remedies', {params})
+  [GET_REMEDIES]: (context: any, params: any) => {
+    let queryParams = '';
+    if (params.categories) {
+      queryParams += '?';
+      params.categories.forEach(id => {
+        queryParams += `category=${id}`;
+      });
+      delete params.categories;
+    }
+
+    Api.get(`remedies${queryParams}`, {params})
       .then((response) => {
         context.commit(SET_REMEDIES, response.data);
       })

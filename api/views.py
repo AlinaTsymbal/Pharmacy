@@ -25,7 +25,7 @@ class RemediesView(APIView):
         remedies = Remedy.objects.all()
 
         if categories is not None and len(categories) > 0:
-            remedies = remedies.filter(categories__in=categories) \
-                .annotate(cnt=Count('categories')).filter(cnt=2)
+            remedies = remedies.filter(categories__in=map(int, categories)) \
+                .annotate(cnt=Count('categories')).filter(cnt=len(categories))
 
         return Response(ShortRemedySerializer(remedies, many=True).data, status.HTTP_200_OK)

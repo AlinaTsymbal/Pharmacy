@@ -3,6 +3,7 @@
     <CategoriesMenu
       class="categories-menu"
       :categories="getCategories"
+      :on-category-select="onCategorySelect"
     />
 
     <RemedyList
@@ -34,6 +35,11 @@ export default {
     },
     getRemedies() {
       return this.remedies;
+    },
+  },
+  methods: {
+    onCategorySelect(selectedCategories) {
+      this.$store.dispatch(GET_REMEDIES, {categories: selectedCategories});
     },
   },
   mounted() {
