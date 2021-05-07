@@ -1,0 +1,42 @@
+- model: api.remedy
+  pk: 1
+  fields:
+    name: Remedy 1
+    description: Description of remedy No 1
+    categories: [ 1, 2 ]
+- model: api.remedy
+  pk: 2
+  fields:
+    name: Remedy 2
+    description: Description of remedy No 2
+    categories: [ 2, 3 ]
+- model: api.remedy
+  pk: 3
+  fields:
+    name: Remedy 3
+    description: Description of remedy No 3
+    categories: [ 3, 4 ]
+- model: api.remedy
+  pk: 4
+  fields:
+    name: Remedy 4
+    description: Description of remedy No 4
+    categories: [ 4, 5 ]
+- model: api.remedy
+  pk: 5
+  fields:
+    name: Remedy 5
+    description: Description of remedy No 5
+    categories: [ 5, 6 ]
+- model: api.remedy
+  pk: 6
+  fields:
+    name: Remedy 6
+    description: Description of remedy No 6
+    categories: [ 6, 7 ]
+- model: api.remedy
+  pk: 7
+  fields:
+    name: Remedy 7
+    description: Description of remedy No 7
+    categories: [ 6, 7 ]

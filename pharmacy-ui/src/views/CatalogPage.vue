@@ -7,7 +7,7 @@
 
     <RemedyList
       class="remedies-list"
-      :remedies="remedies"
+      :remedies="getRemedies"
     />
   </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 import CategoriesMenu from '../components/catalog/CategoriesMenu.vue';
 import RemedyList from '../components/catalog/RemedyList.vue';
-import {GET_CATEGORIES} from '@/store/catalog/actions';
+import {GET_CATEGORIES, GET_REMEDIES} from '@/store/catalog/actions';
 import {mapGetters} from "vuex";
 
 export default {
@@ -27,43 +27,18 @@ export default {
   computed: {
     ...mapGetters([
       'categories',
+      'remedies',
     ]),
     getCategories() {
       return this.categories;
     },
-  },
-  data() {
-    return {
-      remedies: [
-        {
-          id: 1,
-          name: 'Remedy 1',
-        },
-        {
-          id: 2,
-          name: 'Remedy 2',
-        },
-        {
-          id: 3,
-          name: 'Remedy 3',
-        },
-        {
-          id: 4,
-          name: 'Remedy 4',
-        },
-        {
-          id: 5,
-          name: 'Remedy 5',
-        },
-        {
-          id: 6,
-          name: 'Remedy 6',
-        },
-      ],
-    };
+    getRemedies() {
+      return this.remedies;
+    },
   },
   mounted() {
     this.$store.dispatch(GET_CATEGORIES);
+    this.$store.dispatch(GET_REMEDIES);
   },
 };
 </script>

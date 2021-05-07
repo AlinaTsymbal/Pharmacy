@@ -24,7 +24,7 @@ class RemediesView(APIView):
 
         remedies = Remedy.objects.all()
 
-        if categories is not None:
+        if categories is not None and len(categories) > 0:
             remedies = remedies.filter(categories__in=categories) \
                 .annotate(cnt=Count('categories')).filter(cnt=2)
 

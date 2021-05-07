@@ -1,19 +1,25 @@
- import CategoryModel from "@/models/CategoryModel";
-import {GET_CATEGORIES} from "@/store/catalog/actions";
+import CategoryModel from "@/models/CategoryModel";
+import {GET_CATEGORIES, GET_REMEDIES} from "@/store/catalog/actions";
 import {Api} from "@/utils/api";
-import {SET_CATEGORIES} from "@/store/catalog/mutations";
+import {SET_CATEGORIES, SET_REMEDIES} from "@/store/catalog/mutations";
+import RemedyModel from "@/models/RemedyModel";
 
 interface State {
   categories: CategoryModel[];
+  remedies: RemedyModel[];
 }
 
 const store: State = {
   categories: [],
+  remedies: [],
 };
 
 const getters = {
   categories(state: State) {
     return state.categories;
+  },
+  remedies(state: State) {
+    return state.remedies;
   },
 };
 
@@ -27,11 +33,23 @@ const actions = {
         console.log(err);
       });
   },
+  [GET_REMEDIES]: (context: any, params: object) => {
+    Api.get('remedies', {params})
+      .then((response) => {
+        context.commit(SET_REMEDIES, response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
 };
 
 const mutations = {
   [SET_CATEGORIES]: (state: State, categories: CategoryModel[]) => {
     state.categories = categories;
+  },
+  [SET_REMEDIES]: (state: State, remedies: RemedyModel[]) => {
+    state.remedies = remedies;
   },
 };
 
