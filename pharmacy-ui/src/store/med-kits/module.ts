@@ -49,19 +49,19 @@ const actions = {
       {
         id: 1,
         name: 'Med kit 1',
-        info: 'Description of med kit 1',
+        description: 'Description of med kit 1',
         remedies,
       },
       {
         id: 2,
         name: 'Med kit 2',
-        info: 'Description of med kit 2',
+        description: 'Description of med kit 2',
         remedies,
       },
       {
         id: 3,
         name: 'Med kit 3',
-        info: 'Description of med kit 3',
+        description: 'Description of med kit 3',
         remedies,
       },
     ];

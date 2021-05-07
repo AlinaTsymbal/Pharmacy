@@ -4,7 +4,7 @@
       <span> {{ kit.name }} </span>
     </div>
     <div class="med-kit-info-wrapper">
-      <span> {{ kit.info }} </span>
+      <span> {{ kit.description }} </span>
     </div>
 
     <div class="med-kit-remedies-wrapper">
