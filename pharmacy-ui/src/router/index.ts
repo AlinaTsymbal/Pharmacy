@@ -6,7 +6,7 @@ import HomePage from '@/views/HomePage.vue';
 import CatalogPage from '@/views/CatalogPage.vue';
 import RemedySetsPage from '@/views/RemedySetsPage.vue';
 import MedKitsPage from '@/views/MedKitsPage.vue';
-import AuthorizationPage from '@/views/AuthorizationPage';
+import AuthorizationPage from '@/views/AuthorizationPage.vue';
 
 Vue.use(VueRouter);
 
