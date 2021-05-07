@@ -2,7 +2,7 @@
   <div class="catalog-page-wrapper">
     <CategoriesMenu
       class="categories-menu"
-      :categories="categories"
+      :categories="getCategories"
     />
 
     <RemedyList
@@ -15,34 +15,25 @@
 <script>
 import CategoriesMenu from '../components/catalog/CategoriesMenu.vue';
 import RemedyList from '../components/catalog/RemedyList.vue';
+import {GET_CATEGORIES} from '@/store/catalog/actions';
+import {mapGetters} from "vuex";
 
 export default {
   name: 'CatalogPage',
-  components: { RemedyList, CategoriesMenu },
+  components: {
+    RemedyList,
+    CategoriesMenu,
+  },
+  computed: {
+    ...mapGetters([
+      'categories',
+    ]),
+    getCategories() {
+      return this.categories;
+    },
+  },
   data() {
     return {
-      categories: [
-        {
-          id: 1,
-          name: 'category 1',
-        },
-        {
-          id: 2,
-          name: 'category 1',
-        },
-        {
-          id: 3,
-          name: 'category 1',
-        },
-        {
-          id: 4,
-          name: 'category 1',
-        },
-        {
-          id: 5,
-          name: 'category 1',
-        },
-      ],
       remedies: [
         {
           id: 1,
@@ -70,6 +61,9 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    this.$store.dispatch(GET_CATEGORIES);
   },
 };
 </script>
