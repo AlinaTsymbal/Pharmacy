@@ -7,7 +7,7 @@
     >
       <RemedyItem
         :remedy="item"
-        style="height: 17rem"
+        style="height: 20rem; width: 15rem"
       />
     </div>
   </div>

@@ -6,7 +6,7 @@
       :key="item.id"
     >
       <RemedyItem
-        style="height: 25rem"
+        style="height: 20rem; width: 15rem"
         :remedy="item"
       />
     </div>

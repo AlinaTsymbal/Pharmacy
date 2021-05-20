@@ -1,7 +1,17 @@
 import CategoryModel from "@/models/CategoryModel";
-import {ADD_TO_BASKET, GET_CATEGORIES, GET_REMEDIES} from "@/store/catalog/actions";
+import {
+  ADD_TO_BASKET,
+  GET_CATEGORIES,
+  GET_REMEDIES,
+  GET_REMEDY_DETAILS
+} from "@/store/catalog/actions";
 import {Api} from "@/utils/api";
-import {ADD_BASKET_ITEM, SET_CATEGORIES, SET_REMEDIES} from "@/store/catalog/mutations";
+import {
+  ADD_BASKET_ITEM,
+  SET_CATEGORIES,
+  SET_REMEDIES,
+  SET_REMEDY_DETAILS
+} from "@/store/catalog/mutations";
 import RemedyModel from "@/models/RemedyModel";
 import {notification} from "ant-design-vue";
 
@@ -9,12 +19,14 @@ interface State {
   categories: CategoryModel[];
   remedies: RemedyModel[];
   basket: RemedyModel[];
+  details: RemedyModel[];
 }
 
 const store: State = {
   categories: [],
   remedies: [],
   basket: [],
+  details: [],
 };
 
 const getters = {
@@ -26,6 +38,9 @@ const getters = {
   },
   basket(state: State) {
     return state.basket;
+  },
+  details(state: State) {
+    return state.details;
   },
 };
 
@@ -78,6 +93,12 @@ const actions = {
       });
     }
   },
+  [GET_REMEDY_DETAILS]: (context: any, id: number) => {
+    Api.get(`remedy/${id}`)
+      .then((response) => {
+        context.commit(SET_REMEDY_DETAILS, response.data);
+      });
+  }
 };
 
 const mutations = {
@@ -89,6 +110,9 @@ const mutations = {
   },
   [ADD_BASKET_ITEM]: (state: State, remedy: RemedyModel) => {
     state.basket.push(remedy);
+  },
+  [SET_REMEDY_DETAILS]: (state: State, details: RemedyModel[]) => {
+    state.details = details;
   },
 };
 

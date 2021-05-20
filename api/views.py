@@ -3,8 +3,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Remedy, Category, RemedySet, MedKit
-from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy
+from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
+    RemedyPharmacySerializer
 
 
 class Categories(APIView):
@@ -41,3 +42,14 @@ class MedKits(APIView):
 
     def get(self, request):
         return Response(MedKitSerializer(MedKit.objects.all(), many=True).data, status.HTTP_200_OK)
+
+
+class RemedyDetails(APIView):
+    http_method_names = ['get']
+    model = PharmacyRemedy
+
+    def get(self, request, remedy_id):
+        return Response(
+            RemedyPharmacySerializer(self.model.objects.filter(remedy_id=remedy_id), many=True).data,
+            status.HTTP_200_OK
+        )

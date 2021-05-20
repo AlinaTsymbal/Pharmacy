@@ -41,7 +41,7 @@ export default {
       this.$store.dispatch(ADD_TO_BASKET, this.remedy);
     },
     onDetailsClick() {
-      eventBus.$emit('openRemedyDetails', this.remedy.id);
+      eventBus.$emit('openRemedyDetails', this.remedy.id, this.remedy.name);
     },
   },
 };

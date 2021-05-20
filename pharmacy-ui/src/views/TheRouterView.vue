@@ -2,7 +2,7 @@
   <div id="router-view-wrapper">
     <Navigation :items="items"/>
     <router-view class="page-content-wrapper"/>
-    <RemedyDetails />
+    <RemedyDetails :details="details"/>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
   computed: {
     ...mapGetters([
       'basket',
+      'details',
     ]),
     items() {
       return this.basket;

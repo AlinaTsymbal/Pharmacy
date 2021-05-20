@@ -38,12 +38,21 @@ class Remedy(models.Model):
     name = models.TextField()
     description = models.TextField(null=True, blank=True)
     categories = models.ManyToManyField(Category, 'remedies', db_table='category_remedy')
-    pharmacies = models.ManyToManyField(Pharmacy, 'remedies', db_table='pharmacy_remedy')
+
     sets = models.ManyToManyField(RemedySet, 'remedies', db_table='remedy_set_remedy')
     med_kits = models.ManyToManyField(MedKit, 'remedies', db_table='med_kit_remedy')
 
     class Meta:
         db_table = 'remedy'
+
+
+class PharmacyRemedy(models.Model):
+    pharmacy = models.ForeignKey(Pharmacy, models.DO_NOTHING, null=True, blank=True)
+    remedy = models.ForeignKey(Remedy, models.DO_NOTHING, null=True, blank=True)
+    price = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'pharmacy_remedy'
 
 
 class AuthUser(AbstractUser):

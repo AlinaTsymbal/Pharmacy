@@ -3,7 +3,7 @@ import os
 
 from rest_framework import serializers
 
-from api.models import Remedy, Category, RemedySet, MedKit
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -35,6 +35,30 @@ class ShortRemedySerializer(serializers.ModelSerializer):
             'id',
             'name',
             'description',
+        ]
+
+
+class PharmacySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pharmacy
+        fields = [
+            'id',
+            'address',
+            'name',
+        ]
+
+
+class RemedyPharmacySerializer(serializers.ModelSerializer):
+    remedy = ShortRemedySerializer()
+    pharmacy = PharmacySerializer()
+
+    class Meta:
+        model = PharmacyRemedy
+        fields = [
+            'id',
+            'remedy',
+            'pharmacy',
+            'price'
         ]
 
 

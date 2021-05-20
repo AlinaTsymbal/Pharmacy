@@ -1,0 +1,270 @@
+- model: api.pharmacyremedy
+  pk: 1
+  fields:
+    remedy: 1
+    pharmacy: 1
+    price: 76,50
+- model: api.pharmacyremedy
+  pk: 2
+  fields:
+    remedy: 1
+    pharmacy: 2
+    price: 82,70
+- model: api.pharmacyremedy
+  pk: 3
+  fields:
+    remedy: 1
+    pharmacy: 3
+    price: 81,70
+- model: api.pharmacyremedy
+  pk: 4
+  fields:
+    remedy: 2
+    pharmacy: 1
+    price: 33,90
+- model: api.pharmacyremedy
+  pk: 5
+  fields:
+    remedy: 2
+    pharmacy: 2
+    price: 35,60
+- model: api.pharmacyremedy
+  pk: 6
+  fields:
+    remedy: 2
+    pharmacy: 3
+    price: 34,40
+- model: api.pharmacyremedy
+  pk: 7
+  fields:
+    remedy: 3
+    pharmacy: 1
+    price: 17,20
+- model: api.pharmacyremedy
+  pk: 8
+  fields:
+    remedy: 3
+    pharmacy: 2
+    price: 18,80
+- model: api.pharmacyremedy
+  pk: 9
+  fields:
+    remedy: 3
+    pharmacy: 3
+    price: 17,90
+- model: api.pharmacyremedy
+  pk: 10
+  fields:
+    remedy: 4
+    pharmacy: 1
+    price: 13,80
+- model: api.pharmacyremedy
+  pk: 11
+  fields:
+    remedy: 4
+    pharmacy: 2
+    price: 14,4о
+- model: api.pharmacyremedy
+  pk: 12
+  fields:
+    remedy: 4
+    pharmacy: 3
+    price: 14,20
+- model: api.pharmacyremedy
+  pk: 13
+  fields:
+    remedy: 5
+    pharmacy: 1
+    price: 31,90
+- model: api.pharmacyremedy
+  pk: 14
+  fields:
+    remedy: 5
+    pharmacy: 2
+    price: 32,40
+- model: api.pharmacyremedy
+  pk: 15
+  fields:
+    remedy: 5
+    pharmacy: 3
+    price: 33,50
+- model: api.pharmacyremedy
+  pk: 16
+  fields:
+    remedy: 6
+    pharmacy: 1
+    price: 184,90
+- model: api.pharmacyremedy
+  pk: 17
+  fields:
+    remedy: 6
+    pharmacy: 2
+    price: 202,50
+- model: api.pharmacyremedy
+  pk: 18
+  fields:
+    remedy: 6
+    pharmacy: 3
+    price: 212,00
+- model: api.pharmacyremedy
+  pk: 19
+  fields:
+    remedy: 7
+    pharmacy: 1
+    price: 145,90
+- model: api.pharmacyremedy
+  pk: 20
+  fields:
+    remedy: 7
+    pharmacy: 2
+    price: 155,70
+- model: api.pharmacyremedy
+  pk: 21
+  fields:
+    remedy: 7
+    pharmacy: 3
+    price: 160,50
+- model: api.pharmacyremedy
+  pk: 22
+  fields:
+    remedy: 8
+    pharmacy: 1
+    price: 80,50
+- model: api.pharmacyremedy
+  pk: 23
+  fields:
+    remedy: 8
+    pharmacy: 2
+    price: 85,10
+- model: api.pharmacyremedy
+  pk: 24
+  fields:
+    remedy: 8
+    pharmacy: 3
+    price: 83,40
+- model: api.pharmacyremedy
+  pk: 25
+  fields:
+    remedy: 9
+    pharmacy: 1
+    price: 12,90
+- model: api.pharmacyremedy
+  pk: 26
+  fields:
+    remedy: 9
+    pharmacy: 2
+    price: 13,40
+- model: api.pharmacyremedy
+  pk: 27
+  fields:
+    remedy: 9
+    pharmacy: 3
+    price: 13,10
+- model: api.pharmacyremedy
+  pk: 28
+  fields:
+    remedy: 10
+    pharmacy: 1
+    price: 60,60
+- model: api.pharmacyremedy
+  pk: 29
+  fields:
+    remedy: 10
+    pharmacy: 2
+    price: 65,70
+- model: api.pharmacyremedy
+  pk: 30
+  fields:
+    remedy: 10
+    pharmacy: 3
+    price: 64,40
+- model: api.pharmacyremedy
+  pk: 31
+  fields:
+    remedy: 11
+    pharmacy: 1
+    price: 27,80
+- model: api.pharmacyremedy
+  pk: 32
+  fields:
+    remedy: 11
+    pharmacy: 2
+    price: 28,90
+- model: api.pharmacyremedy
+  pk: 33
+  fields:
+    remedy: 11
+    pharmacy: 3
+    price: 28,20
+- model: api.pharmacyremedy
+  pk: 34
+  fields:
+    remedy: 12
+    pharmacy: 1
+    price: 60,40
+- model: api.pharmacyremedy
+  pk: 35
+  fields:
+    remedy: 12
+    pharmacy: 2
+    price: 65,50
+- model: api.pharmacyremedy
+  pk: 36
+  fields:
+    remedy: 12
+    pharmacy: 3
+    price: 64,50
+- model: api.pharmacyremedy
+  pk: 37
+  fields:
+    remedy: 13
+    pharmacy: 1
+    price: 102,70
+- model: api.pharmacyremedy
+  pk: 38
+  fields:
+    remedy: 13
+    pharmacy: 2
+    price: 113,40
+- model: api.pharmacyremedy
+  pk: 39
+  fields:
+    remedy: 13
+    pharmacy: 3
+    price: 114,50
+- model: api.pharmacyremedy
+  pk: 40
+  fields:
+    remedy: 14
+    pharmacy: 1
+    price: 27,50
+- model: api.pharmacyremedy
+  pk: 41
+  fields:
+    remedy: 14
+    pharmacy: 2
+    price: 29,00
+- model: api.pharmacyremedy
+  pk: 42
+  fields:
+    remedy: 14
+    pharmacy: 3
+    price: 27,80
+- model: api.pharmacyremedy
+  pk: 43
+  fields:
+    remedy: 15
+    pharmacy: 1
+    price: 76,40
+- model: api.pharmacyremedy
+  pk: 44
+  fields:
+    remedy: 15
+    pharmacy: 2
+    price: 80,60
+- model: api.pharmacyremedy
+  pk: 45
+  fields:
+    remedy: 15
+    pharmacy: 3
+    price: 79,60

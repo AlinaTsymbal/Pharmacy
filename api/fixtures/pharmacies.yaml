@@ -1,0 +1,18 @@
+- model: api.pharmacy
+  pk: 1
+  fields:
+    name: Аптека "Бажаємо здоров'я"
+    address: вулиця Сумгаїтська, 24
+    phone: 0472 663 513
+- model: api.pharmacy
+  pk: 2
+  fields:
+    name: Аптека низьких цін
+    address: вулиця Сумгаїтська, 39
+    phone: 093 000 5900
+- model: api.pharmacy
+  pk: 3
+  fields:
+    name: Аптека "Подорожник"
+    address: бульвар Шевченка, 345/10
+    phone: 067 500 5151
