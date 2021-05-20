@@ -1,28 +1,44 @@
 - model: api.category
   pk: 1
   fields:
-    name: Cagegory 1
+    name: Вітаміни , БАД та ефірні олії
 - model: api.category
   pk: 2
   fields:
-    name: Cagegory 2
+    name: Дихальна система та ротова порожнина
 - model: api.category
   pk: 3
   fields:
-    name: Cagegory 3
+    name: Опорно-рухова система
 - model: api.category
   pk: 4
   fields:
-    name: Cagegory 4
+    name: Серцево-судинна система
 - model: api.category
   pk: 5
   fields:
-    name: Cagegory 5
+    name: Травна система
 - model: api.category
   pk: 6
   fields:
-    name: Cagegory 6
+    name: Дерматологічні препарати
 - model: api.category
   pk: 7
   fields:
-    name: Cagegory 7
+    name: Офтальмологічні препарати
+- model: api.category
+  pk: 8
+  fields:
+    name: Протиалергічні препарати
+- model: api.category
+  pk: 9
+  fields:
+    name: Препарати від болю та спазмів, жарознижуючі
+- model: api.category
+  pk: 10
+  fields:
+    name: Противірусні препарати
+- model: api.category
+  pk: 11
+  fields:
+    name: Антибіотики

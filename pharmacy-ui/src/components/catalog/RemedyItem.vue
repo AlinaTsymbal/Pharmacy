@@ -6,6 +6,11 @@
         src="@/assets/image-placeholder.png"
         alt="Remedy image"
       />
+      <img
+        v-if="imagePresent"
+        :src="`data:image/png;base64,${remedy.image}`"
+        alt="Remedy image"
+      />
     </div>
     <div class="remedy-name-wrapper">
       <span class="remedy-name">{{ remedy.name }}</span>
@@ -37,7 +42,7 @@ export default {
     },
     onDetailsClick() {
       eventBus.$emit('openRemedyDetails', this.remedy.id);
-    }
+    },
   },
 };
 </script>

@@ -44,8 +44,11 @@ const actions = {
     if (params.categories) {
       queryParams += '?';
       params.categories.forEach(id => {
-        queryParams += `category=${id}`;
+        queryParams += `category=${id}&`;
       });
+      if (params.categories.length > 1) {
+        queryParams = queryParams.slice(0, -1);
+      }
       delete params.categories;
     }
 

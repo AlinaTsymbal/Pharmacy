@@ -36,7 +36,7 @@ class MedKit(models.Model):
 
 class Remedy(models.Model):
     name = models.TextField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     categories = models.ManyToManyField(Category, 'remedies', db_table='category_remedy')
     pharmacies = models.ManyToManyField(Pharmacy, 'remedies', db_table='pharmacy_remedy')
     sets = models.ManyToManyField(RemedySet, 'remedies', db_table='remedy_set_remedy')
