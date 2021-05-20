@@ -1,7 +1,9 @@
 <template>
   <div class="remedy-sets-page-wrapper">
-    <div class="sets-info-wrapper">
-      <span>Placeholder</span>
+    <div class="sets-info-wrapper" >
+      <span style=" width: 40rem; font-size: large;">
+        На цій сторінці створено набори , які складаються з певного переліку лікарських засобів, що були додані відповідно до хвороб , що зазначені в назвах. Зареєстровані користувачі можуть редагувати склад наборів за власними побажаннями.
+      </span>
     </div>
     <RemedySet
       v-for="item in remedySets"

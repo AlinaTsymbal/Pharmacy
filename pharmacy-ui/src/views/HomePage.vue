@@ -6,8 +6,9 @@
       class="search-input"
       size="large"
     />
-    <span class="about-service">Placeholder for 'about' text.
-      Here probably will be few sentences so better adjust layout beforehand </span>
+    <span class="about-service">Даний сервіс створено з метою допомоги у підборі та пошуку лікарських засобів за деякими відповідними критеріями та запитами. </span>
+
+    <span class="about-service">На цьому сайті ви також знайдете довідкову інформацію з лікарських засобів (опис , інструкції), актуальні дані про наявність медикаментів і ціни на них в аптеках міста.</span>
     <Links/>
   </div>
 </template>

@@ -1,11 +1,45 @@
 <template>
   <div class="about-page-wrapper">
     <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+      <h1>Про сервіс</h1>
+    </div>
 
-  <div>
-    <span>Placeholder for contacts</span>
+    <div>
+      <div>
+        <p>
+          Сервіс - інформаційний портал, який дозволяє отримувати інформацію для особистих некомерційних цілей про ціни
+          на
+          товари (в тому числі про лікарські засоби) в аптеках Черкас.
+        </p>
+      </div>
+      <div>
+        <p>
+          Унікальність сервісу полягає в тому, що на сайті є сторінки зі сформованими наборами ліків, що можна
+          комплексно
+          застосовувати про лікуванні певних недугів , а також зібрані аптечки відповідно до призначення.
+        </p>
+      </div>
+      <div>
+        <p>
+          Важливо, що сервіс не є інтернет-аптекою і не займається продажем ліків.
+        </p>
+      </div>
+    </div>
   </div>
-  </div>
-  </template>
+</template>
+
+
+<style scoped lang="scss">
+.about-page-wrapper {
+  div {
+    width: 100%;
+    justify-content: center;
+
+    p {
+      margin: 3rem auto;
+      width: 40rem;
+      font-size: large;
+    }
+  }
+}
+</style>
