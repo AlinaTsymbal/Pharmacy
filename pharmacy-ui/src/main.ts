@@ -13,6 +13,8 @@ Vue.config.productionTip = false;
 Vue.use(Antd);
 Vue.use(VuexAxios, axios);
 
+export const eventBus = new Vue();
+
 new Vue({
   router,
   store,

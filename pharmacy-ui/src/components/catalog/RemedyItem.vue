@@ -11,13 +11,14 @@
       <span class="remedy-name">{{ remedy.name }}</span>
     </div>
     <div class="item-links">
-      <a class="details-link">Details</a>
+      <a class="details-link" @click="onDetailsClick">Details</a>
       <a class="add-to-basket-link" @click="onBasketClick">Add to basket</a>
     </div>
   </a-card>
 </template>
 
 <script>
+import { eventBus } from '@/main';
 import {ADD_TO_BASKET} from "@/store/catalog/actions";
 
 export default {
@@ -34,6 +35,9 @@ export default {
     onBasketClick() {
       this.$store.dispatch(ADD_TO_BASKET, this.remedy);
     },
+    onDetailsClick() {
+      eventBus.$emit('openRemedyDetails', this.remedy.id);
+    }
   },
 };
 </script>
