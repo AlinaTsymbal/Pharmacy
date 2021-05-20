@@ -16,7 +16,7 @@
 <script>
 import CategoriesMenu from '../components/catalog/CategoriesMenu.vue';
 import RemedyList from '../components/catalog/RemedyList.vue';
-import {GET_CATEGORIES, GET_REMEDIES} from '@/store/catalog/actions';
+import {ADD_TO_BASKET, GET_CATEGORIES, GET_REMEDIES} from '@/store/catalog/actions';
 import {mapGetters} from "vuex";
 
 export default {

@@ -1,2 +1,3 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_REMEDIES = 'GET_REMEDIES';
+export const ADD_TO_BASKET = 'ADD_TO_BASKET';

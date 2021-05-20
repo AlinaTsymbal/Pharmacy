@@ -13,7 +13,7 @@
       </div>
       <a-popover title="Basket" trigger="hover">
         <template slot="content">
-          <Basket :items="[]"/>
+          <Basket :items="items"/>
         </template>
         <a type="primary" class="basket-popup-trigger"> Basket </a>
       </a-popover>
@@ -28,6 +28,9 @@ export default {
   name: 'Navigation',
   components: {
     Basket,
+  },
+  props: {
+    items: Array,
   },
   methods: {
     redirectLogin() {

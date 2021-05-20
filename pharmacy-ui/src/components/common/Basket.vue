@@ -3,6 +3,11 @@
     <div v-if="isEmpty">
       <span>Basket is empty!</span>
     </div>
+    <div v-if="!isEmpty">
+      <div v-for="i in items" :key="i.id">
+        {{ i.name }}
+      </div>
+    </div>
   </div>
 </template>
 

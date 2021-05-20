@@ -16,6 +16,7 @@ class ShortRemedySerializer(serializers.ModelSerializer):
     class Meta:
         model = Remedy
         fields = [
+            'id',
             'name',
             'description',
         ]

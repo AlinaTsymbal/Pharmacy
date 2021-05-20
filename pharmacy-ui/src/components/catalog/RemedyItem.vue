@@ -12,12 +12,14 @@
     </div>
     <div class="item-links">
       <a class="details-link">Details</a>
-      <a class="add-to-basket-link">Add to basket</a>
+      <a class="add-to-basket-link" @click="onBasketClick">Add to basket</a>
     </div>
   </a-card>
 </template>
 
 <script>
+import {ADD_TO_BASKET} from "@/store/catalog/actions";
+
 export default {
   name: 'RemedyItem',
   computed: {
@@ -27,6 +29,11 @@ export default {
   },
   props: {
     remedy: Object,
+  },
+  methods: {
+    onBasketClick() {
+      this.$store.dispatch(ADD_TO_BASKET, this.remedy);
+    },
   },
 };
 </script>

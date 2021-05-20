@@ -1,17 +1,20 @@
 import CategoryModel from "@/models/CategoryModel";
-import {GET_CATEGORIES, GET_REMEDIES} from "@/store/catalog/actions";
+import {ADD_TO_BASKET, GET_CATEGORIES, GET_REMEDIES} from "@/store/catalog/actions";
 import {Api} from "@/utils/api";
-import {SET_CATEGORIES, SET_REMEDIES} from "@/store/catalog/mutations";
+import {ADD_BASKET_ITEM, SET_CATEGORIES, SET_REMEDIES} from "@/store/catalog/mutations";
 import RemedyModel from "@/models/RemedyModel";
+import {notification} from "ant-design-vue";
 
 interface State {
   categories: CategoryModel[];
   remedies: RemedyModel[];
+  basket: RemedyModel[];
 }
 
 const store: State = {
   categories: [],
   remedies: [],
+  basket: [],
 };
 
 const getters = {
@@ -20,6 +23,9 @@ const getters = {
   },
   remedies(state: State) {
     return state.remedies;
+  },
+  basket(state: State) {
+    return state.basket;
   },
 };
 
@@ -51,6 +57,24 @@ const actions = {
         console.log(err);
       });
   },
+  [ADD_TO_BASKET]: (context: any, remedy: RemedyModel) => {
+    if (!context.getters.basket.find(r => r.id === remedy.id)) {
+      context.commit(ADD_BASKET_ITEM, remedy);
+      notification.success({
+        message: 'Товар додано в корзину',
+        description: '',
+        placement: 'topRight',
+        duration: 4.5,
+      });
+    } else {
+      notification.info({
+        message: 'Товар вже знаходиться в корзині',
+        description: '',
+        placement: 'topRight',
+        duration: 4.5,
+      });
+    }
+  },
 };
 
 const mutations = {
@@ -59,6 +83,9 @@ const mutations = {
   },
   [SET_REMEDIES]: (state: State, remedies: RemedyModel[]) => {
     state.remedies = remedies;
+  },
+  [ADD_BASKET_ITEM]: (state: State, remedy: RemedyModel) => {
+    state.basket.push(remedy);
   },
 };
 
