@@ -1,11 +1,11 @@
 <template>
   <div class="navigation-wrapper">
     <a-tabs :active-key="activeKey" @change="forward">
-      <a-tab-pane key="home" tab="Home page"/>
-      <a-tab-pane key="catalog" tab="Catalog"/>
-      <a-tab-pane key="sets" tab="Remedy sets"/>
-      <a-tab-pane key="med-kits" tab="Med kits"/>
-      <a-tab-pane key="about" tab="About service"/>
+      <a-tab-pane key="home" tab="Головна сторінка"/>
+      <a-tab-pane key="catalog" tab="Каталог"/>
+      <a-tab-pane key="sets" tab="Набори ліків"/>
+      <a-tab-pane key="med-kits" tab="Міні-аптечки"/>
+      <a-tab-pane key="about" tab="Про сервіс"/>
     </a-tabs>
     <div class="additional-links-wrapper">
       <div class="authorization-links">
