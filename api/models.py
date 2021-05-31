@@ -56,16 +56,26 @@ class PharmacyRemedy(models.Model):
 
 
 class AuthUser(AbstractUser):
+    type = models.TextField(default='CLIENT')
+
     class Meta:
         db_table = 'user'
 
 
 class Client(AuthUser):
-    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='user_data')
-    phone = models.TextField()
+    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='client_data')
+    phone = models.TextField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = 'client'
+
+
+class Admin(AuthUser):
+    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='admin_data')
+
+    class Meta:
+        db_table = 'admin'
 
 
 class Basket(models.Model):
