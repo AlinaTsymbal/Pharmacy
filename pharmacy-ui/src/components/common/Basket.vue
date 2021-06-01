@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer" v-if="!isEmpty">
       <a-button type="submit" style="margin-left: auto">Оформити замовлення</a-button>
     </div>
   </div>

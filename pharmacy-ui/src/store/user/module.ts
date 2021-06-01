@@ -7,11 +7,13 @@ import router from "@/router";
 interface State {
   user: any;
   token: string | null;
+  order: any;
 }
 
 const store: State = {
   user: null,
   token: null,
+  order: null,
 };
 
 const getters = {
@@ -20,6 +22,9 @@ const getters = {
   },
   token(state: State) {
     return state.token;
+  },
+  order(state: State) {
+    return state.order;
   },
 };
 

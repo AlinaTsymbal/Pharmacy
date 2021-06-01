@@ -1,9 +1,8 @@
 import base64
-import os
 
 from rest_framework import serializers
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client, BasketRemedy
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -18,7 +17,6 @@ class CategorySerializer(serializers.ModelSerializer):
 class ShortRemedySerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(ShortRemedySerializer, self).to_representation(instance)
-        print(os.getcwd())
 
         try:
             with open(f'./api/images/{instance.id}', 'rb') as image:
@@ -128,4 +126,40 @@ class AddToBasketSerializer(serializers.Serializer):
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
+        fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        data = super(OrderItemSerializer, self).to_representation(instance)
+
+        remedy = ShortRemedySerializer(instance.remedy).data
+
+        pharmacy_set = instance.remedy.pharmacyremedy_set.all()
+
+        data['name'] = remedy.get('name')
+        data['pharmacy'] = instance.remedy.pharmacyremedy_set.first().pharmacy.id
+        data['pharmacies'] = PharmacySerializer([p.pharmacy for p in pharmacy_set], many=True).data
+        for (i, p) in enumerate(pharmacy_set):
+            data['pharmacies'][i]['price'] = p.price
+        del data['remedy']
+
+        return data
+
+    class Meta:
+        model = BasketRemedy
+        fields = '__all__'
+
+
+class BasketOrderSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        data = super(BasketOrderSerializer, self).to_representation(instance)
+
+        remedies = OrderItemSerializer(instance.basket_remedies, many=True).data
+        data['remedies'] = remedies
+
+        return data
+
+    class Meta:
+        model = Basket
         fields = '__all__'

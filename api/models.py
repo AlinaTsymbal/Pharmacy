@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, AbstractUser
 from django.db import models
+from django.utils import timezone
 
 
 class Pharmacy(models.Model):
@@ -93,3 +94,22 @@ class BasketRemedy(models.Model):
 
     class Meta:
         db_table = 'basket_remedy'
+
+
+class Order(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=timezone.now)
+    resolved_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'order'
+
+
+class OrderRemedy(models.Model):
+    remedy = models.ForeignKey(Remedy, on_delete=models.DO_NOTHING)
+    pharmacy = models.ForeignKey(Pharmacy, on_delete=models.DO_NOTHING)
+    amount = models.IntegerField(default=1)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_remedies')
+
+    class Meta:
+        db_table = 'order_remedy'
