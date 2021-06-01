@@ -25,7 +25,7 @@
 - model: api.category
   pk: 7
   fields:
-    name: Офтальмологічні препарати
+    name: Офтальмологічні та оториноларингологічні препарати
 - model: api.category
   pk: 8
   fields:
@@ -42,3 +42,7 @@
   pk: 11
   fields:
     name: Антибіотики
+- model: api.category
+  pk: 12
+  fields:
+    name: ANTI-Covid

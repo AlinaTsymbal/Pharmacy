@@ -20,7 +20,7 @@ class ShortRemedySerializer(serializers.ModelSerializer):
         data = super(ShortRemedySerializer, self).to_representation(instance)
 
         try:
-            with open(f'./api/images/{instance.id}', 'rb') as image:
+            with open(f'./api/images/{instance.id}.jpg', 'rb') as image:
                 image_base64 = base64.b64encode(image.read())
 
             data['image'] = image_base64
