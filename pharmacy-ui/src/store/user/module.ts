@@ -1,6 +1,6 @@
 import {Api} from "@/utils/api";
-import {GET_USER, LOGIN_USER} from "@/store/user/actions";
-import {SET_TOKEN, SET_USER} from "@/store/user/mutations";
+import {GET_ORDER, GET_USER, LOGIN_USER} from "@/store/user/actions";
+import {SET_ORDER, SET_TOKEN, SET_USER} from "@/store/user/mutations";
 import {setUserData} from "@/utils/authorization";
 import router from "@/router";
 
@@ -44,6 +44,12 @@ const actions = {
         router.push('home');
       });
   },
+  [GET_ORDER]: (context: any, user: any) => {
+    Api.get('order', user)
+      .then((response) => {
+        context.commit(SET_ORDER, response.data);
+      });
+  }
 };
 
 const mutations = {
@@ -52,6 +58,9 @@ const mutations = {
   },
   [SET_TOKEN](state: State, token: string | null) {
     state.token = token;
+  },
+  [SET_ORDER](state: State, order: any) {
+    state.order = order;
   },
 };
 

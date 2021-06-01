@@ -17,17 +17,19 @@
           <span>{{ i.name }}</span>
         </div>
         <div class="column-right">
-          <span>{{i.amount}}</span>
+          <span>{{ i.amount }}</span>
         </div>
       </div>
     </div>
     <div class="footer" v-if="!isEmpty">
-      <a-button type="submit" style="margin-left: auto">Оформити замовлення</a-button>
+      <a-button type="submit" @click="onCLickHandle">Оформити замовлення</a-button>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: 'Basket',
   computed: {
@@ -37,6 +39,11 @@ export default {
   },
   props: {
     items: Array,
+  },
+  methods: {
+    onCLickHandle() {
+      router.push('order');
+    },
   },
 };
 </script>
@@ -56,6 +63,7 @@ export default {
       .column-left {
         width: 70%;
       }
+
       .column-right {
         width: 30%;
       }
