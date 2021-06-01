@@ -10,6 +10,7 @@
 import Navigation from '@/components/common/Navigation.vue';
 import {mapGetters} from "vuex";
 import RemedyDetails from "@/components/common/RemedyDetails";
+import {GET_BASKET} from "@/store/catalog/actions";
 
 export default {
   name: 'TheRouterView',
@@ -21,12 +22,15 @@ export default {
       'user',
     ]),
     items() {
-      return this.basket;
+      return this.basket?.remedies;
     },
     loggedUser() {
       return this.user;
     },
   },
+  mounted() {
+    this.$store.dispatch(GET_BASKET);
+  }
 };
 </script>
 

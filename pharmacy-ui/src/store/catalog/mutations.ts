@@ -2,3 +2,4 @@ export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SET_REMEDIES = 'SET_REMEDIES';
 export const ADD_BASKET_ITEM = 'ADD_BASKET_ITEM';
 export const SET_REMEDY_DETAILS = 'SET_REMEDY_DETAILS';
+export const SET_BASKET = 'SET_BASKET';

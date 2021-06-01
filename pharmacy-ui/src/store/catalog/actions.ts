@@ -2,3 +2,4 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_REMEDIES = 'GET_REMEDIES';
 export const ADD_TO_BASKET = 'ADD_TO_BASKET';
 export const GET_REMEDY_DETAILS = 'GET_REMEDY_DETAILS';
+export const GET_BASKET = 'GET_BASKET';
