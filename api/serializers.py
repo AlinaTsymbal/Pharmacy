@@ -3,7 +3,7 @@ import os
 
 from rest_framework import serializers
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -86,3 +86,40 @@ class MedKitSerializer(serializers.ModelSerializer):
             'description',
             'remedies',
         ]
+
+
+class BasketSerializer(serializers.ModelSerializer):
+
+    def to_representation(self, instance):
+        data = super(BasketSerializer, self).to_representation(instance)
+
+        remedies = []
+
+        for br in instance.basket_remedies.all():
+            remedies.append(
+                {
+                    'id': br.remedy.id,
+                    'name': br.remedy.name,
+                    'amount': br.amount,
+                    'pharmacy': br.pharmacy
+                }
+            )
+
+        data['remedies'] = remedies
+
+        return data
+
+    class Meta:
+        model = Basket
+        fields = [
+            'id',
+        ]
+
+
+class AddToBasketSerializer(serializers.Serializer):
+    remedy = serializers.PrimaryKeyRelatedField(queryset=Remedy.objects.all(), required=True)
+    amount = serializers.IntegerField(default=1, required=False)
+    pharmacy = serializers.PrimaryKeyRelatedField(queryset=Pharmacy.objects.all(), required=False)
+
+    class Meta:
+        fields = '__all__'

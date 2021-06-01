@@ -80,7 +80,16 @@ class Admin(AuthUser):
 
 class Basket(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    remedies = models.ManyToManyField(Remedy, 'baskets', db_table='user_basket_remedy')
 
     class Meta:
         db_table = 'user_basket'
+
+
+class BasketRemedy(models.Model):
+    remedy = models.ForeignKey(Remedy, on_delete=models.DO_NOTHING)
+    pharmacy = models.ForeignKey(Pharmacy, on_delete=models.DO_NOTHING, null=True, blank=True)
+    amount = models.IntegerField(default=1)
+    basket = models.ForeignKey(Basket, on_delete=models.CASCADE, related_name='basket_remedies')
+
+    class Meta:
+        db_table = 'basket_remedy'

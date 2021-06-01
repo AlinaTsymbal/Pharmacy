@@ -1,11 +1,11 @@
 from django.db.models import Count
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
-    RemedyPharmacySerializer
+    RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer
 
 
 class Categories(APIView):
@@ -53,3 +53,35 @@ class RemedyDetails(APIView):
             RemedyPharmacySerializer(self.model.objects.filter(remedy_id=remedy_id), many=True).data,
             status.HTTP_200_OK
         )
+
+
+class BasketView(APIView):
+    http_method_names = ['get', 'post']
+    model = Basket
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        return Response(
+            BasketSerializer(self.model.objects.get(client__user_id=request.user.id)).data,
+            status.HTTP_200_OK,
+        )
+
+    def post(self, request):
+        serializer = AddToBasketSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        basket = self.model.objects.filter(client_id=request.user.id).first()
+        if basket is None:
+            basket = self.model.objects.create(client=Client.objects.get(id=request.user.id))
+
+        remedy = basket.basket_remedies.filter(remedy_id=serializer.data.get('remedy')).first()
+
+        if remedy is not None:
+            remedy.amount += 1
+            remedy.save()
+        else:
+            basket.basket_remedies.create(remedy_id=serializer.data.get('remedy'))
+
+        return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
