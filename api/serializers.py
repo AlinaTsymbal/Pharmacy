@@ -2,7 +2,8 @@ import base64
 
 from rest_framework import serializers
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client, BasketRemedy
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client, BasketRemedy, \
+    OrderRemedy, Order, Admin
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -124,14 +125,34 @@ class AddToBasketSerializer(serializers.Serializer):
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        data = super(ClientSerializer, self).to_representation(instance)
+
+        data['type'] = 'CLIENT'
+
+        return data
+
     class Meta:
         model = Client
         fields = '__all__'
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
+class AdminSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
-        data = super(OrderItemSerializer, self).to_representation(instance)
+        data = super(AdminSerializer, self).to_representation(instance)
+
+        data['type'] = 'ADMIN'
+
+        return data
+
+    class Meta:
+        model = Admin
+        fields = '__all__'
+
+
+class BasketRemedySerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        data = super(BasketRemedySerializer, self).to_representation(instance)
 
         remedy = ShortRemedySerializer(instance.remedy).data
 
@@ -155,7 +176,7 @@ class BasketOrderSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(BasketOrderSerializer, self).to_representation(instance)
 
-        remedies = OrderItemSerializer(instance.basket_remedies, many=True).data
+        remedies = BasketRemedySerializer(instance.basket_remedies, many=True).data
         data['remedies'] = remedies
 
         return data
@@ -163,3 +184,44 @@ class BasketOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Basket
         fields = '__all__'
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderRemedy
+        fields = [
+            'remedy',
+            'pharmacy',
+            'amount',
+        ]
+
+
+class CreateOrderSerializer(serializers.ModelSerializer):
+    remedies = OrderItemSerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            'remedies',
+        ]
+
+
+class OrderRemedySerializer(serializers.ModelSerializer):
+    remedy = ShortRemedySerializer()
+    pharmacy = PharmacySerializer()
+    amount = serializers.IntegerField()
+    price = serializers.FloatField()
+
+    class Meta:
+        model = OrderRemedy
+        fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    remedies = OrderRemedySerializer(many=True)
+
+    class Meta:
+        model = Order
+        fields = [
+            'remedies',
+        ]

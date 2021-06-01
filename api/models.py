@@ -104,6 +104,10 @@ class Order(models.Model):
     class Meta:
         db_table = 'order'
 
+    @property
+    def remedies(self):
+        return self.order_remedies
+
 
 class OrderRemedy(models.Model):
     remedy = models.ForeignKey(Remedy, on_delete=models.DO_NOTHING)
@@ -113,3 +117,7 @@ class OrderRemedy(models.Model):
 
     class Meta:
         db_table = 'order_remedy'
+
+    @property
+    def price(self):
+        return self.remedy.pharmacyremedy_set.get(pharmacy_id=self.pharmacy.id).price

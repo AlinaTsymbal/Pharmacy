@@ -51,10 +51,16 @@ const actions = {
       });
   },
   [MAKE_ORDER]: (context: any, order: any) => {
-    console.log(order);
-    Api.post('order', order)
+    const params = order.remedies.map(r => {
+      return {
+        remedy: r.id,
+        pharmacy: r.pharmacy,
+        amount: r.amount,
+      };
+    });
+    Api.post('order', {remedies: params})
       .then((response) => {
-        console.log(response.data);
+        console.log('here')
       });
   },
 };

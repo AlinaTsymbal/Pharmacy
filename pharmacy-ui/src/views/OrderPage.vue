@@ -9,7 +9,7 @@
       />
       <div style="display: flex; flex-direction: column">
         <span>{{ `Загальна ціна замовлення: ${totalSum}` }}</span>
-        <a-button style="width: 20rem; margin: 1rem auto" type="primary">Замовити</a-button>
+        <a-button style="width: 20rem; margin: 1rem auto" type="primary" @click="createOrder">Замовити</a-button>
       </div>
     </a-card>
   </div>
@@ -18,12 +18,12 @@
 <script>
 import BasketItem from "../components/common/BasketItem";
 import {mapGetters} from "vuex";
-import {GET_ORDER} from "@/store/user/actions";
+import {GET_ORDER, MAKE_ORDER} from "@/store/user/actions";
 import OdrerTable from "@/components/common/OdrerTable";
 
 export default {
   name: "OrderPage",
-  components: {OdrerTable, BasketItem},
+  components: {OdrerTable},
   computed: {
     ...mapGetters([
       'order',
@@ -57,6 +57,9 @@ export default {
       this.readOrderIfAbsent();
       this.localOrder.remedies.find(r => r.id === itemId).amount = amount;
     },
+    createOrder() {
+      this.$store.dispatch(MAKE_ORDER, this.localOrder);
+    }
   },
   mounted() {
     this.$store.dispatch(GET_ORDER);

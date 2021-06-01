@@ -3,9 +3,10 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
-    RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer, BasketOrderSerializer
+    RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer, BasketOrderSerializer, \
+    CreateOrderSerializer, OrderSerializer, AdminSerializer
 
 
 class Me(APIView):
@@ -17,6 +18,8 @@ class Me(APIView):
 
         if user is not None:
             return Response(ClientSerializer(user).data, status.HTTP_200_OK)
+        else:
+            return Response(AdminSerializer(user).data, status.HTTP_200_OK)
 
 
 class Categories(APIView):
@@ -104,3 +107,31 @@ class OrderView(APIView):
 
     def get(self, request):
         return Response(BasketOrderSerializer(Basket.objects.get(client_id=request.user.id)).data, status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = CreateOrderSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        order = Order.objects.create(client_id=request.user.id)
+
+        for r in serializer.validated_data.get('remedies'):
+            order.order_remedies.create(
+                remedy_id=r.get('remedy').id,
+                pharmacy_id=r.get('pharmacy').id,
+                amount=r.get('amount')
+            )
+
+        return Response(status=status.HTTP_200_OK)
+
+
+class ListOrder(APIView):
+    http_method_names = ['get', 'post']
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        return Response(
+            OrderSerializer(Order.objects.filter(client_id=request.user.id), many=True).data,
+            status.HTTP_200_OK,
+        )
