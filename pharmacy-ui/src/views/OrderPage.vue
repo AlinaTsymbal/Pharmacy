@@ -13,7 +13,16 @@
       <div class="unavailable-remedies">
       </div>
       <div class="available-remedies" v-if="availableRemedies">
-        <BasketItem v-for="remedy in availableRemedies" :item="remedy" :on-select="onPharmacySelect"/>
+        <BasketItem
+          v-for="remedy in availableRemedies"
+          :item="remedy"
+          :on-select="onPharmacySelect"
+          :on-amount-change="onAmountChange"
+        />
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <span >{{ `Загальна ціна замовлення: ${totalSum}` }}</span>
+        <a-button style="width: 20rem; margin: 1rem auto" type="primary">Замовити</a-button>
       </div>
     </a-card>
   </div>
@@ -34,6 +43,15 @@ export default {
     availableRemedies() {
       return this.order?.remedies;
     },
+    totalSum() {
+      this.readOrderIfAbsent();
+      let sum = 0;
+      this.localOrder?.remedies.forEach((r) => {
+        const price = parseFloat(r.pharmacies.find(p => p.id === r.pharmacy).price.replace(',', '.')).toFixed(2)
+        sum += price * r.amount;
+      });
+      return parseFloat(sum).toFixed(2);
+    },
   },
   data() {
     return {
@@ -41,13 +59,30 @@ export default {
     };
   },
   methods: {
-    onPharmacySelect(value) {
-    },
-  },
+    readOrderIfAbsent() {
+      if (this.localOrder === null) {
+        this.localOrder = JSON.parse(JSON.stringify(this.order));
+      }
+    }
+    ,
+    onPharmacySelect(itemId, pharmacyId) {
+      this.readOrderIfAbsent();
+      this.localOrder.remedies.find(r => r.id === itemId).pharmacy = pharmacyId;
+    }
+    ,
+    onAmountChange(itemId, amount) {
+      this.readOrderIfAbsent();
+      this.localOrder.remedies.find(r => r.id === itemId).amount = amount;
+    }
+    ,
+  }
+  ,
   mounted() {
     this.$store.dispatch(GET_ORDER);
-  },
-};
+  }
+  ,
+}
+;
 </script>
 
 <style scoped lang="scss">

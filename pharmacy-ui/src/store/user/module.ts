@@ -1,5 +1,5 @@
 import {Api} from "@/utils/api";
-import {GET_ORDER, GET_USER, LOGIN_USER} from "@/store/user/actions";
+import {GET_ORDER, GET_USER, LOGIN_USER, MAKE_ORDER} from "@/store/user/actions";
 import {SET_ORDER, SET_TOKEN, SET_USER} from "@/store/user/mutations";
 import {setUserData} from "@/utils/authorization";
 import router from "@/router";
@@ -49,7 +49,14 @@ const actions = {
       .then((response) => {
         context.commit(SET_ORDER, response.data);
       });
-  }
+  },
+  [MAKE_ORDER]: (context: any, order: any) => {
+    console.log(order);
+    Api.post('order', order)
+      .then((response) => {
+        console.log(response.data);
+      });
+  },
 };
 
 const mutations = {

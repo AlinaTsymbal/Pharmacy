@@ -16,7 +16,7 @@
       </a-select-option>
     </a-select>
     <div class="item-amount">
-      <a-input type="number" v-model="amount"></a-input>
+      <a-input type="number" v-model="amount" @change="handleAmountChange"></a-input>
     </div>
     <div class="item-price">
       <span>{{ selectedPharmacy.price }}</span>
@@ -33,6 +33,7 @@ export default {
   props: {
     item: Object,
     onSelect: Function,
+    onAmountChange: Function,
   },
   computed: {
     getPrice() {
@@ -57,9 +58,14 @@ export default {
   },
   methods: {
     handleSelect(value) {
-      this.onSelect(value);
+      this.onSelect(this.item.id, value);
       this.selectedPharmacyId = value;
       this.selectedPharmacy = this.item.pharmacies.find(p => p.id === this.selectedPharmacyId);
+    },
+    handleAmountChange() {
+      if ((this.amount) !== '') {
+        this.onAmountChange(this.item.id, this.amount);
+      }
     },
   },
 };
