@@ -1,7 +1,7 @@
 import {Api} from "@/utils/api";
-import {GET_ORDER, GET_USER, LOGIN_USER, MAKE_ORDER} from "@/store/user/actions";
+import {GET_ORDER, GET_USER, LOGIN_USER, LOGOUT, MAKE_ORDER} from "@/store/user/actions";
 import {SET_ORDER, SET_TOKEN, SET_USER} from "@/store/user/mutations";
-import {setUserData} from "@/utils/authorization";
+import {setAuthToken, setUserData} from "@/utils/authorization";
 import router from "@/router";
 
 interface State {
@@ -51,7 +51,7 @@ const actions = {
       });
   },
   [MAKE_ORDER]: (context: any, order: any) => {
-    const params = order.remedies.map(r => {
+    const params = order.remedies.map((r: any) => {
       return {
         remedy: r.id,
         pharmacy: r.pharmacy,
@@ -62,6 +62,13 @@ const actions = {
       .then((response) => {
         console.log('here');
       });
+  },
+  [LOGOUT]: (context: any) => {
+    localStorage.removeItem('auth-token');
+    setAuthToken();
+    context.commit(SET_USER, null);
+    context.commit(SET_TOKEN, null);
+    router.push('/home');
   },
 };
 

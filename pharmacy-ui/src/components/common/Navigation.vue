@@ -6,10 +6,14 @@
       <a-tab-pane key="sets" tab="Набори ліків"/>
       <a-tab-pane key="med-kits" tab="Міні-аптечки"/>
       <a-tab-pane key="about" tab="Про сервіс"/>
+      <a-tab-pane key="orders" tab="Замовлення" v-if="isAdmin"/>
     </a-tabs>
     <div class="additional-links-wrapper">
       <div class="authorization-links" v-if="!loggedIn">
         <a @click="redirectLogin">Login/Register</a>
+      </div>
+      <div class="authorization-links" v-if="loggedIn">
+        <a @click="hadleLogout">Logout</a>
       </div>
       <a-popover title="Basket" trigger="hover">
         <template slot="content">
@@ -23,6 +27,7 @@
 
 <script>
 import Basket from '@/components/common/Basket';
+import {LOGOUT} from "@/store/user/actions";
 
 export default {
   name: 'Navigation',
@@ -32,6 +37,9 @@ export default {
   computed: {
     loggedIn() {
       return this.user;
+    },
+    isAdmin() {
+      return this.user?.type === 'ADMIN';
     },
   },
   props: {
@@ -45,6 +53,9 @@ export default {
     forward(key) {
       this.activeKey = key;
       this.$router.push(key);
+    },
+    hadleLogout() {
+      this.$store.dispatch(LOGOUT);
     },
   },
   data() {

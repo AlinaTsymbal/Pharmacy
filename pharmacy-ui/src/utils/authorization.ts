@@ -46,6 +46,7 @@ export const isAuthenticated = (to: any, from: any, next: any) => {
       next();
       return;
     }
+    next();
   } else {
     next();
     return;

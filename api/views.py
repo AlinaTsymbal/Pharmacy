@@ -3,7 +3,7 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order, Admin
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
     RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer, BasketOrderSerializer, \
     CreateOrderSerializer, OrderSerializer, AdminSerializer
@@ -19,7 +19,7 @@ class Me(APIView):
         if user is not None:
             return Response(ClientSerializer(user).data, status.HTTP_200_OK)
         else:
-            return Response(AdminSerializer(user).data, status.HTTP_200_OK)
+            return Response(AdminSerializer(Admin.objects.filter(id=request.user.id).first()).data, status.HTTP_200_OK)
 
 
 class Categories(APIView):

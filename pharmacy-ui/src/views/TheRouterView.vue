@@ -30,7 +30,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(GET_BASKET);
-  }
+  },
 };
 </script>
 
