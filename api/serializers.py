@@ -219,9 +219,13 @@ class OrderRemedySerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     remedies = OrderRemedySerializer(many=True)
+    client = ClientSerializer()
 
     class Meta:
         model = Order
         fields = [
             'remedies',
+            'client',
+            'created_at',
+            'id',
         ]

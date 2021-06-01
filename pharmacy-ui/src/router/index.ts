@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter, { RouteConfig } from 'vue-router';
+import VueRouter, {RouteConfig} from 'vue-router';
 import About from '@/views/About.vue';
 import RouterView from '@/views/TheRouterView.vue';
 import HomePage from '@/views/HomePage.vue';
@@ -8,6 +8,7 @@ import RemedySetsPage from '@/views/RemedySetsPage.vue';
 import MedKitsPage from '@/views/MedKitsPage.vue';
 import AuthorizationPage from '@/views/AuthorizationPage.vue';
 import OrderPage from '@/views/OrderPage.vue';
+import OrdersPage from '@/views/OrdersPage.vue'
 import {isAuthenticated} from "@/utils/authorization";
 
 Vue.use(VueRouter);
@@ -55,6 +56,11 @@ const routes: Array<RouteConfig> = [
         path: 'order',
         name: 'Order',
         component: OrderPage,
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: OrdersPage,
       },
     ],
   },

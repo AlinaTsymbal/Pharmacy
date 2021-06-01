@@ -132,6 +132,6 @@ class ListOrder(APIView):
 
     def get(self, request):
         return Response(
-            OrderSerializer(Order.objects.filter(client_id=request.user.id), many=True).data,
+            OrderSerializer(Order.objects.all(), many=True).data,
             status.HTTP_200_OK,
         )

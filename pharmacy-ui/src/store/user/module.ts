@@ -1,6 +1,13 @@
 import {Api} from "@/utils/api";
-import {GET_ORDER, GET_USER, LOGIN_USER, LOGOUT, MAKE_ORDER} from "@/store/user/actions";
-import {SET_ORDER, SET_TOKEN, SET_USER} from "@/store/user/mutations";
+import {
+  GET_ORDER,
+  GET_ORDERS,
+  GET_USER,
+  LOGIN_USER,
+  LOGOUT,
+  MAKE_ORDER
+} from "@/store/user/actions";
+import {SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER} from "@/store/user/mutations";
 import {setAuthToken, setUserData} from "@/utils/authorization";
 import router from "@/router";
 
@@ -8,12 +15,14 @@ interface State {
   user: any;
   token: string | null;
   order: any;
+  orders: any[];
 }
 
 const store: State = {
   user: null,
   token: null,
   order: null,
+  orders: [],
 };
 
 const getters = {
@@ -25,6 +34,9 @@ const getters = {
   },
   order(state: State) {
     return state.order;
+  },
+  orders(state: State) {
+    return state.orders;
   },
 };
 
@@ -70,6 +82,13 @@ const actions = {
     context.commit(SET_TOKEN, null);
     router.push('/home');
   },
+  [GET_ORDERS]: (context: any) => {
+    Api.get('orders')
+      .then((response) => {
+        console.log(response.data)
+        context.commit(SET_ORDERS, response.data);
+      });
+  },
 };
 
 const mutations = {
@@ -81,6 +100,9 @@ const mutations = {
   },
   [SET_ORDER](state: State, order: any) {
     state.order = order;
+  },
+  [SET_ORDERS](state: State, orders: any[]) {
+    state.orders = orders;
   },
 };
 
