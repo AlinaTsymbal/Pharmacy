@@ -4,28 +4,48 @@
       <span style="font-size: large">Список замовлень</span>
       <div class="orders-table">
         <div v-for="order in getOrders" :key="order.id" class="row">
-          <div class="column">{{ `${order.client.last_name} ${order.client.last_name}` }}</div>
-          <div class="column">{{ order.client.phone }}</div>
-          <div class="column">{{ order.created_at }}</div>
-          <div class="column"><a>Замовлені ліки</a></div>
+          <RemedyListItem :order="order" :handle-details="handleClick"/>
         </div>
       </div>
     </a-card>
+    <RemediesListModal :items="remedies"/>
   </div>
 </template>
 
 <script>
 import {GET_ORDERS} from "@/store/user/actions";
 import {mapGetters} from "vuex";
+import RemediesListModal from "@/components/common/RemediesListModal";
+import RemedyListItem from "@/components/common/RemedyListItem";
+import {eventBus} from "@/main";
 
 export default {
   name: "OrdersPage",
+  components: {
+    RemedyListItem,
+    RemediesListModal
+  },
   computed: {
     ...mapGetters([
       'orders',
     ]),
     getOrders() {
       return this.orders;
+    },
+    remedies() {
+      return this.order?.remedies;
+    },
+  },
+  data() {
+    return {
+      order: null,
+      visible: false,
+    };
+  },
+  methods: {
+    handleClick(id) {
+      this.order = this.orders.find(o => o.id === id);
+      eventBus.$emit('openListModal');
     },
   },
   mounted() {

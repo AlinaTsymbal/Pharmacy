@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import BasketItem from "../components/common/BasketItem";
 import {mapGetters} from "vuex";
 import {GET_ORDER, MAKE_ORDER} from "@/store/user/actions";
 import OdrerTable from "@/components/common/OdrerTable";
