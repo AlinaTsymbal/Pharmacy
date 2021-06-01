@@ -61,7 +61,7 @@ const actions = {
     let queryParams = '';
     if (params.categories) {
       queryParams += '?';
-      params.categories.forEach(id => {
+      params.categories.forEach((id: any) => {
         queryParams += `category=${id}&`;
       });
       if (params.categories.length > 1) {

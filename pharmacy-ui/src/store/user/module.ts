@@ -51,7 +51,7 @@ const actions = {
       });
   },
   [MAKE_ORDER]: (context: any, order: any) => {
-    const params = order.remedies.map(r => {
+    const params = order.remedies.map((r: any) => {
       return {
         remedy: r.id,
         pharmacy: r.pharmacy,
