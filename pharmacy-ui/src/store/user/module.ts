@@ -51,7 +51,7 @@ const actions = {
       });
   },
   [MAKE_ORDER]: (context: any, order: any) => {
-    const params = order.remedies.map((r: any) => {
+    const params = order.remedies.map(r => {
       return {
         remedy: r.id,
         pharmacy: r.pharmacy,
@@ -60,7 +60,7 @@ const actions = {
     });
     Api.post('order', {remedies: params})
       .then((response) => {
-        console.log('here')
+        console.log('here');
       });
   },
 };
