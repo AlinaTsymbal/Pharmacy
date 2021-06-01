@@ -1,6 +1,6 @@
 <template>
   <div id="router-view-wrapper">
-    <Navigation :items="items"/>
+    <Navigation :items="items" :user="loggedUser"/>
     <router-view class="page-content-wrapper"/>
     <RemedyDetails :details="details"/>
   </div>
@@ -18,9 +18,13 @@ export default {
     ...mapGetters([
       'basket',
       'details',
+      'user',
     ]),
     items() {
       return this.basket;
+    },
+    loggedUser() {
+      return this.user;
     },
   },
 };

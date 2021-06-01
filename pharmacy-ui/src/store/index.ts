@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import medKits from '@/store/med-kits/module'
 import catalog from '@/store/catalog/module'
 import remedySets from '@/store/remedy-sets/module'
+import user from '@/store/user/module'
 
 Vue.use(Vuex);
 
@@ -11,5 +12,6 @@ export default new Vuex.Store({
     medKits,
     catalog,
     remedySets,
+    user,
   },
 });

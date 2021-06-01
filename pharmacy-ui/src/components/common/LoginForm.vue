@@ -12,7 +12,7 @@
         <a-form-item>
           <a-input
             v-decorator="[
-          'userName',
+          'username',
           { rules: [{ required: true, message: 'Please input your username!' }] },
         ]"
             placeholder="Username"
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import {LOGIN_USER} from "@/store/user/actions";
+
 export default {
   name: 'LoginForm',
   beforeCreate() {
@@ -53,7 +55,7 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          this.$store.dispatch(LOGIN_USER, values);
         }
       });
     },

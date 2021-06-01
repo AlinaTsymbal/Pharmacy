@@ -1,4 +1,4 @@
-import MedKitModel from '@/models/MedKitModel';
+
 import {Api} from "@/utils/api";
 import {GET_REMEDY_SETS} from "@/store/remedy-sets/actions";
 import {SET_REMEDY_SETS} from "@/store/remedy-sets/mutations";

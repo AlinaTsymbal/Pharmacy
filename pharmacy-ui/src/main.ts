@@ -7,11 +7,19 @@ import VuexAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import {setAuthInterceptor, setAuthToken} from "@/utils/authorization";
 
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
 Vue.use(VuexAxios, axios);
+
+setAuthInterceptor();
+const token = localStorage.getItem('auth-token');
+if (token) {
+  setAuthToken(token);
+}
+
 
 export const eventBus = new Vue();
 

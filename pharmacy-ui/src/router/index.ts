@@ -7,6 +7,7 @@ import CatalogPage from '@/views/CatalogPage.vue';
 import RemedySetsPage from '@/views/RemedySetsPage.vue';
 import MedKitsPage from '@/views/MedKitsPage.vue';
 import AuthorizationPage from '@/views/AuthorizationPage.vue';
+import {isAuthenticated} from "@/utils/authorization";
 
 Vue.use(VueRouter);
 
@@ -62,5 +63,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach(isAuthenticated);
 
 export default router;

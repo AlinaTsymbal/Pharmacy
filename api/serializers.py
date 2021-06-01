@@ -3,7 +3,7 @@ import os
 
 from rest_framework import serializers
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -122,4 +122,10 @@ class AddToBasketSerializer(serializers.Serializer):
     pharmacy = serializers.PrimaryKeyRelatedField(queryset=Pharmacy.objects.all(), required=False)
 
     class Meta:
+        fields = '__all__'
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
         fields = '__all__'

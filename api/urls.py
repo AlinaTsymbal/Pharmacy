@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from api.views import RemediesView, Categories, RemedySets, MedKits, RemedyDetails, BasketView
+from api.views import RemediesView, Categories, RemedySets, MedKits, RemedyDetails, BasketView, Me
 
 urlpatterns = [
     path('categories', Categories.as_view()),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('login', TokenObtainPairView.as_view()),
     path('check-login', TokenVerifyView.as_view()),
     path('basket', BasketView.as_view()),
+    path('me', Me.as_view()),
 ]

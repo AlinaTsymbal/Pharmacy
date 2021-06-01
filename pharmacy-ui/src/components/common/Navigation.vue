@@ -8,7 +8,7 @@
       <a-tab-pane key="about" tab="Про сервіс"/>
     </a-tabs>
     <div class="additional-links-wrapper">
-      <div class="authorization-links">
+      <div class="authorization-links" v-if="!loggedIn">
         <a @click="redirectLogin">Login/Register</a>
       </div>
       <a-popover title="Basket" trigger="hover">
@@ -29,7 +29,13 @@ export default {
   components: {
     Basket,
   },
+  computed: {
+    loggedIn() {
+      return this.user;
+    },
+  },
   props: {
+    user: Object,
     items: Array,
   },
   methods: {

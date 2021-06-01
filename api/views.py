@@ -5,7 +5,18 @@ from rest_framework.views import APIView
 
 from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
-    RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer
+    RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer
+
+
+class Me(APIView):
+    http_method_names = ['get', 'post']
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        user = Client.objects.filter(id=request.user.id).first()
+
+        if user is not None:
+            return Response(ClientSerializer(user).data, status.HTTP_200_OK)
 
 
 class Categories(APIView):
