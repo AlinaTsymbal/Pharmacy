@@ -10,6 +10,7 @@ import {
 import {SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER} from "@/store/user/mutations";
 import {setAuthToken, setUserData} from "@/utils/authorization";
 import router from "@/router";
+import {notification} from "ant-design-vue";
 
 interface State {
   user: any;
@@ -72,7 +73,13 @@ const actions = {
     });
     Api.post('order', {remedies: params})
       .then((response) => {
-        console.log('here');
+        router.push('home');
+        notification.success({
+          message: 'Замовлення офомленно',
+          description: 'Замовлення було офомлено. Очікуйте підтрвердження',
+          placement: 'topRight',
+          duration: 20,
+        });
       });
   },
   [LOGOUT]: (context: any) => {

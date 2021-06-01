@@ -75,8 +75,11 @@ class BasketView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
+        basket = self.model.objects.filter(client_id=request.user.id).first()
+        if basket is None:
+            basket = self.model.objects.create(client=Client.objects.get(id=request.user.id))
         return Response(
-            BasketSerializer(self.model.objects.get(client__user_id=request.user.id)).data,
+            BasketSerializer(basket).data,
             status.HTTP_200_OK,
         )
 
