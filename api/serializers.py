@@ -38,6 +38,23 @@ class ShortRemedySerializer(serializers.ModelSerializer):
 
 
 class RemedySerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        data = super(RemedySerializer, self).to_representation(instance)
+
+        pharmacies = []
+
+        for p in instance.pharmacies.all():
+            pharmacies.append(
+                {
+                    'details': PharmacySerializer(p.pharmacy).data,
+                    'price': p.price
+                }
+            )
+
+        data['pharmacies'] = pharmacies
+
+        return data
+
     class Meta:
         model = Remedy
         fields = '__all__'
@@ -55,20 +72,6 @@ class PharmacySerializer(serializers.ModelSerializer):
 
 class RemedyPharmacySerializer(serializers.ModelSerializer):
     remedy = ShortRemedySerializer()
-    pharmacy = PharmacySerializer()
-
-    class Meta:
-        model = PharmacyRemedy
-        fields = [
-            'id',
-            'remedy',
-            'pharmacy',
-            'price'
-        ]
-
-
-class DetailsRemedyPharmacySerializer(serializers.ModelSerializer):
-    remedy = RemedySerializer()
     pharmacy = PharmacySerializer()
 
     class Meta:

@@ -1,8 +1,8 @@
-import router from "@/router";
+import router from '@/router';
 import store from '@/store';
-import axios from "axios";
-import {SET_TOKEN, SET_USER} from "@/store/user/mutations";
-import {GET_USER} from "@/store/user/actions";
+import axios from 'axios';
+import { SET_TOKEN, SET_USER } from '@/store/user/mutations';
+import { GET_USER } from '@/store/user/actions';
 
 export const setAuthInterceptor = () => {
   axios.interceptors.response.use((response) => response, (error) => {
@@ -12,8 +12,6 @@ export const setAuthInterceptor = () => {
 
       store.commit(SET_USER, null);
       store.commit(SET_TOKEN, null);
-
-      router.push('/authorization');
     }
 
     return Promise.reject(error);
@@ -49,6 +47,5 @@ export const isAuthenticated = (to: any, from: any, next: any) => {
     next();
   } else {
     next();
-    return;
   }
 };

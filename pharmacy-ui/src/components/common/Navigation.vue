@@ -1,12 +1,12 @@
 <template>
   <div class="navigation-wrapper">
     <a-tabs :active-key="activeKey" @change="forward">
-      <a-tab-pane key="home" tab="Головна сторінка"/>
-      <a-tab-pane key="catalog" tab="Каталог"/>
-      <a-tab-pane key="sets" tab="Набори ліків"/>
-      <a-tab-pane key="med-kits" tab="Міні-аптечки"/>
-      <a-tab-pane key="about" tab="Про сервіс"/>
-      <a-tab-pane key="orders" tab="Замовлення" v-if="isAdmin"/>
+      <a-tab-pane key="/home" tab="Головна сторінка"/>
+      <a-tab-pane key="/catalog" tab="Каталог"/>
+      <a-tab-pane key="/sets" tab="Набори ліків"/>
+      <a-tab-pane key="/med-kits" tab="Міні-аптечки"/>
+      <a-tab-pane key="/about" tab="Про сервіс"/>
+      <a-tab-pane key="/orders" tab="Замовлення" v-if="isAdmin"/>
     </a-tabs>
     <div class="additional-links-wrapper">
       <div class="authorization-links" v-if="!loggedIn">
@@ -27,7 +27,7 @@
 
 <script>
 import Basket from '@/components/common/Basket';
-import {LOGOUT} from "@/store/user/actions";
+import { LOGOUT } from '@/store/user/actions';
 
 export default {
   name: 'Navigation',

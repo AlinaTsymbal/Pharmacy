@@ -32,13 +32,6 @@ const routes: Array<RouteConfig> = [
         path: 'catalog',
         name: 'Catalog',
         component: CatalogPage,
-        children: [
-          {
-            path: ':id',
-            name: 'Remedy Details',
-            component: RemedyDetailsPage,
-          },
-        ],
       },
       {
         path: 'sets',
@@ -69,6 +62,11 @@ const routes: Array<RouteConfig> = [
         path: 'orders',
         name: 'Orders',
         component: OrdersPage,
+      },
+      {
+        path: 'remedies/:id',
+        name: 'Remedy Details',
+        component: RemedyDetailsPage,
       },
     ],
   },

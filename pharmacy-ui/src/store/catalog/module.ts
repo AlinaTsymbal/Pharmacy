@@ -17,12 +17,13 @@ import {
 import RemedyModel from '@/models/RemedyModel';
 import { notification } from 'ant-design-vue';
 import router from '@/router';
+import DetailsRemedyModel from '@/models/DetailsRemedyModel';
 
 interface State {
   categories: CategoryModel[];
   remedies: RemedyModel[];
   basket: any;
-  details: RemedyModel[];
+  details: DetailsRemedyModel[];
 }
 
 const store: State = {
@@ -118,7 +119,7 @@ const mutations = {
   [ADD_BASKET_ITEM]: (state: State, remedy: RemedyModel) => {
     state.basket.push(remedy);
   },
-  [SET_REMEDY_DETAILS]: (state: State, details: RemedyModel[]) => {
+  [SET_REMEDY_DETAILS]: (state: State, details: DetailsRemedyModel[]) => {
     state.details = details;
   },
   [SET_BASKET]: (state: State, basket: any) => {

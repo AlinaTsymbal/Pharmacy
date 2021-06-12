@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order, Admin
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
     RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer, BasketOrderSerializer, \
-    CreateOrderSerializer, OrderSerializer, AdminSerializer, DetailsRemedyPharmacySerializer
+    CreateOrderSerializer, OrderSerializer, AdminSerializer, RemedySerializer
 
 
 class Me(APIView):
@@ -71,7 +71,7 @@ class RemedyDetails(APIView):
             )
 
         return Response(
-            DetailsRemedyPharmacySerializer(self.model.objects.filter(remedy_id=remedy_id), many=True).data,
+            RemedySerializer(Remedy.objects.filter(id=remedy_id), many=True).data,
             status.HTTP_200_OK
         )
 
