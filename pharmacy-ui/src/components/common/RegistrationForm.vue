@@ -5,7 +5,6 @@
       <a-form
         style="width: 30rem"
         id="components-form-demo-normal-login"
-        :form="form"
         class="login-form"
         @submit="handleSubmit"
       >
@@ -50,6 +49,11 @@
 <script>
 export default {
   name: 'RegistrationForm',
+  methods: {
+    handleSubmit() {
+      console.log('placeholder');
+    },
+  },
 };
 </script>
 

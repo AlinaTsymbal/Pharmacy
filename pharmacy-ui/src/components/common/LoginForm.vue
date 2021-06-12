@@ -5,7 +5,6 @@
       <a-form
         style="width: 30rem"
         id="components-form-demo-normal-login"
-        :form="form"
         class="login-form"
         @submit="handleSubmit"
       >
@@ -43,12 +42,12 @@
 </template>
 
 <script>
-import {LOGIN_USER} from "@/store/user/actions";
+import { LOGIN_USER } from '@/store/user/actions';
 
 export default {
   name: 'LoginForm',
   beforeCreate() {
-    this.form = this.$form.createForm(this, {name: 'normal_login'});
+    this.form = this.$form.createForm(this, { name: 'normal_login' });
   },
   methods: {
     handleSubmit(e) {

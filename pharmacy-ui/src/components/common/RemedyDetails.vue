@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import {eventBus} from '@/main';
-import {GET_REMEDY_DETAILS} from "@/store/catalog/actions";
+import { eventBus } from '@/main';
+import { GET_REMEDY_DETAILS } from '@/store/catalog/actions';
 
 export default {
-  name: "RemedyDetails",
+  name: 'RemedyDetails',
   props: {
     details: Array,
   },

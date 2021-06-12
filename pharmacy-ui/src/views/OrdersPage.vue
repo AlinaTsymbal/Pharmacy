@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import {GET_ORDERS} from "@/store/user/actions";
-import {mapGetters} from "vuex";
-import RemediesListModal from "@/components/common/RemediesListModal";
-import RemedyListItem from "@/components/common/RemedyListItem";
-import {eventBus} from "@/main";
+import { GET_ORDERS } from '@/store/user/actions';
+import { mapGetters } from 'vuex';
+import RemediesListModal from '@/components/common/RemediesListModal';
+import RemedyListItem from '@/components/common/RemedyListItem';
+import { eventBus } from '@/main';
 
 export default {
-  name: "OrdersPage",
+  name: 'OrdersPage',
   components: {
     RemedyListItem,
-    RemediesListModal
+    RemediesListModal,
   },
   computed: {
     ...mapGetters([
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     handleClick(id) {
-      this.order = this.orders.find(o => o.id === id);
+      this.order = this.orders.find((o) => o.id === id);
       eventBus.$emit('openListModal');
     },
   },

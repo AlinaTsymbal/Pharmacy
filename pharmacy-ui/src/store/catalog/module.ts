@@ -1,22 +1,22 @@
-import CategoryModel from "@/models/CategoryModel";
+import CategoryModel from '@/models/CategoryModel';
 import {
   ADD_TO_BASKET,
   GET_BASKET,
   GET_CATEGORIES,
   GET_REMEDIES,
-  GET_REMEDY_DETAILS
-} from "@/store/catalog/actions";
-import {Api} from "@/utils/api";
+  GET_REMEDY_DETAILS,
+} from '@/store/catalog/actions';
+import { Api } from '@/utils/api';
 import {
   ADD_BASKET_ITEM,
   SET_BASKET,
   SET_CATEGORIES,
   SET_REMEDIES,
-  SET_REMEDY_DETAILS
-} from "@/store/catalog/mutations";
-import RemedyModel from "@/models/RemedyModel";
-import {notification} from "ant-design-vue";
-import router from "@/router";
+  SET_REMEDY_DETAILS,
+} from '@/store/catalog/mutations';
+import RemedyModel from '@/models/RemedyModel';
+import { notification } from 'ant-design-vue';
+import router from '@/router';
 
 interface State {
   categories: CategoryModel[];
@@ -59,7 +59,7 @@ const actions = {
   },
   [GET_REMEDIES]: (context: any, params: any) => {
     let queryParams = '';
-    if (params.categories) {
+    if (params && params.categories) {
       queryParams += '?';
       params.categories.forEach((id: any) => {
         queryParams += `category=${id}&`;
@@ -70,7 +70,7 @@ const actions = {
       delete params.categories;
     }
 
-    Api.get(`remedies${queryParams}`, {params})
+    Api.get(`remedies${queryParams}`, { params })
       .then((response) => {
         context.commit(SET_REMEDIES, response.data);
       })
@@ -79,7 +79,7 @@ const actions = {
       });
   },
   [ADD_TO_BASKET]: (context: any, remedy: RemedyModel) => {
-    Api.post('basket', {remedy: remedy.id})
+    Api.post('basket', { remedy: remedy.id })
       .then((response) => {
         context.commit(SET_BASKET, response.data);
         notification.success({
@@ -123,7 +123,7 @@ const mutations = {
   },
   [SET_BASKET]: (state: State, basket: any) => {
     state.basket = basket;
-  }
+  },
 };
 
 export default {

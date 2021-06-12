@@ -1,16 +1,18 @@
-import {Api} from "@/utils/api";
+import { Api } from '@/utils/api';
 import {
   GET_ORDER,
   GET_ORDERS,
   GET_USER,
   LOGIN_USER,
   LOGOUT,
-  MAKE_ORDER
-} from "@/store/user/actions";
-import {SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER} from "@/store/user/mutations";
-import {setAuthToken, setUserData} from "@/utils/authorization";
-import router from "@/router";
-import {notification} from "ant-design-vue";
+  MAKE_ORDER,
+} from '@/store/user/actions';
+import {
+  SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER,
+} from '@/store/user/mutations';
+import { setAuthToken, setUserData } from '@/utils/authorization';
+import router from '@/router';
+import { notification } from 'ant-design-vue';
 
 interface State {
   user: any;
@@ -52,7 +54,6 @@ const actions = {
   [LOGIN_USER]: (context: any, user: any) => {
     Api.post('login', user)
       .then((response) => {
-
         setUserData(context, response.data);
         router.push('home');
       });
@@ -64,14 +65,12 @@ const actions = {
       });
   },
   [MAKE_ORDER]: (context: any, order: any) => {
-    const params = order.remedies.map((r: any) => {
-      return {
-        remedy: r.id,
-        pharmacy: r.pharmacy,
-        amount: r.amount,
-      };
-    });
-    Api.post('order', {remedies: params})
+    const params = order.remedies.map((r: any) => ({
+      remedy: r.id,
+      pharmacy: r.pharmacy,
+      amount: r.amount,
+    }));
+    Api.post('order', { remedies: params })
       .then((response) => {
         router.push('home');
         notification.success({
@@ -92,7 +91,7 @@ const actions = {
   [GET_ORDERS]: (context: any) => {
     Api.get('orders')
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         context.commit(SET_ORDERS, response.data);
       });
   },
