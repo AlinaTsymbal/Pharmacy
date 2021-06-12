@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import { eventBus } from '@/main';
-import {ADD_TO_BASKET} from "@/store/catalog/actions";
+import { ADD_TO_BASKET } from '@/store/catalog/actions';
 
 export default {
   name: 'RemedyItem',
@@ -41,7 +40,7 @@ export default {
       this.$store.dispatch(ADD_TO_BASKET, this.remedy);
     },
     onDetailsClick() {
-      eventBus.$emit('openRemedyDetails', this.remedy.id, this.remedy.name);
+      this.$router.push(`/remedies/${this.remedy.id}`);
     },
   },
 };
@@ -56,6 +55,7 @@ export default {
 
   .remedy-image-wrapper {
     height: 60%;
+
     img {
       padding: 1rem;
       width: 100%;
@@ -77,7 +77,5 @@ export default {
     justify-content: space-between;
   }
 }
-
-
 
 </style>
