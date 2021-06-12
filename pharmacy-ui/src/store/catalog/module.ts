@@ -95,7 +95,7 @@ const actions = {
       });
   },
   [GET_REMEDY_DETAILS]: (context: any, id: number) => {
-    Api.get(`remedy/${id}`)
+    Api.get(`remedies/${id}?details=true`)
       .then((response) => {
         context.commit(SET_REMEDY_DETAILS, response.data);
       });

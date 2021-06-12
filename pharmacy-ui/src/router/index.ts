@@ -9,6 +9,7 @@ import MedKitsPage from '@/views/MedKitsPage.vue';
 import AuthorizationPage from '@/views/AuthorizationPage.vue';
 import OrderPage from '@/views/OrderPage.vue';
 import OrdersPage from '@/views/OrdersPage.vue';
+import RemedyDetailsPage from '@/views/RemedyDetailsPage.vue';
 import { isAuthenticated } from '@/utils/authorization';
 
 Vue.use(VueRouter);
@@ -31,6 +32,13 @@ const routes: Array<RouteConfig> = [
         path: 'catalog',
         name: 'Catalog',
         component: CatalogPage,
+        children: [
+          {
+            path: ':id',
+            name: 'Remedy Details',
+            component: RemedyDetailsPage,
+          },
+        ],
       },
       {
         path: 'sets',

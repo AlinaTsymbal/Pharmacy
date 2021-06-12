@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     onSelect(e) {
-      alert(e);
+      this.$router.push(`/catalog/${e}`);
     },
     onSearch() {
       if (this.remedies.length > 0) {

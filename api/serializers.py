@@ -37,6 +37,12 @@ class ShortRemedySerializer(serializers.ModelSerializer):
         ]
 
 
+class RemedySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Remedy
+        fields = '__all__'
+
+
 class PharmacySerializer(serializers.ModelSerializer):
     class Meta:
         model = Pharmacy
@@ -49,6 +55,20 @@ class PharmacySerializer(serializers.ModelSerializer):
 
 class RemedyPharmacySerializer(serializers.ModelSerializer):
     remedy = ShortRemedySerializer()
+    pharmacy = PharmacySerializer()
+
+    class Meta:
+        model = PharmacyRemedy
+        fields = [
+            'id',
+            'remedy',
+            'pharmacy',
+            'price'
+        ]
+
+
+class DetailsRemedyPharmacySerializer(serializers.ModelSerializer):
+    remedy = RemedySerializer()
     pharmacy = PharmacySerializer()
 
     class Meta:
