@@ -53,6 +53,14 @@ class RemedySerializer(serializers.ModelSerializer):
 
         data['pharmacies'] = pharmacies
 
+        try:
+            with open(f'./api/images/{instance.id}.jpg', 'rb') as image:
+                image_base64 = base64.b64encode(image.read())
+
+            data['image'] = image_base64
+        except FileNotFoundError as e:
+            print(e)
+
         return data
 
     class Meta:

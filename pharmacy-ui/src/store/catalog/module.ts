@@ -23,14 +23,14 @@ interface State {
   categories: CategoryModel[];
   remedies: RemedyModel[];
   basket: any;
-  details: DetailsRemedyModel[];
+  details: DetailsRemedyModel | null;
 }
 
 const store: State = {
   categories: [],
   remedies: [],
   basket: null,
-  details: [],
+  details: null,
 };
 
 const getters = {
@@ -119,7 +119,7 @@ const mutations = {
   [ADD_BASKET_ITEM]: (state: State, remedy: RemedyModel) => {
     state.basket.push(remedy);
   },
-  [SET_REMEDY_DETAILS]: (state: State, details: DetailsRemedyModel[]) => {
+  [SET_REMEDY_DETAILS]: (state: State, details: DetailsRemedyModel) => {
     state.details = details;
   },
   [SET_BASKET]: (state: State, basket: any) => {

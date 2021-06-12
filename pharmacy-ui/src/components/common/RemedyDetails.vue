@@ -4,10 +4,11 @@
     :visible="modalVisible"
     @ok="handleOk"
     @cancel="handleOk"
+    v-if="details"
   >
     <p> Доступно в аптеках:</p>
-    <p v-for="d in details">
-      {{ `${d.pharmacy.name} за адресою ${d.pharmacy.address} за ціною ${d.price}` }}
+    <p v-for="d in details.pharmacies">
+      {{ `${d.details.name} за адресою ${d.details.address} за ціною ${d.price}` }}
     </p>
   </a-modal>
 </template>
@@ -19,7 +20,7 @@ import { GET_REMEDY_DETAILS } from '@/store/catalog/actions';
 export default {
   name: 'RemedyDetails',
   props: {
-    details: Array,
+    details: Object,
   },
   data() {
     return {

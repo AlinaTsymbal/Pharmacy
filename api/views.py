@@ -71,7 +71,7 @@ class RemedyDetails(APIView):
             )
 
         return Response(
-            RemedySerializer(Remedy.objects.filter(id=remedy_id), many=True).data,
+            RemedySerializer(Remedy.objects.get(id=remedy_id)).data,
             status.HTTP_200_OK
         )
 
