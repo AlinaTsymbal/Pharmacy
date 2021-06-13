@@ -67,12 +67,15 @@ class PharmacyRemedy(models.Model):
 class AuthUser(AbstractUser):
     type = models.TextField(default='CLIENT')
 
+    def validate_unique(self, exclude=None):
+        pass
+
     class Meta:
         db_table = 'user'
 
 
-class Client(AuthUser):
-    user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='client_data')
+class Client(models.Model):
+    user = models.OneToOneField(AuthUser, models.CASCADE, related_name='client_data')
     phone = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
 
@@ -128,4 +131,4 @@ class OrderRemedy(models.Model):
 
     @property
     def price(self):
-        return self.remedy.pharmacyremedy_set.get(pharmacy_id=self.pharmacy.id).price
+        return self.remedy.pharmacies.get(pharmacy_id=self.pharmacy.id).price

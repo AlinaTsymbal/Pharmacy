@@ -1,12 +1,13 @@
+from django.contrib.auth.hashers import make_password
 from django.db.models import Count
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order, Admin
+from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Basket, Client, Order, Admin, AuthUser
 from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySetSerializer, MedKitSerializer, \
     RemedyPharmacySerializer, BasketSerializer, AddToBasketSerializer, ClientSerializer, BasketOrderSerializer, \
-    CreateOrderSerializer, OrderSerializer, AdminSerializer, RemedySerializer
+    CreateOrderSerializer, OrderSerializer, AdminSerializer, RemedySerializer, RegistrationSerializer
 
 
 class Me(APIView):
@@ -145,3 +146,27 @@ class ListOrder(APIView):
             OrderSerializer(Order.objects.all(), many=True).data,
             status.HTTP_200_OK,
         )
+
+
+class Registration(APIView):
+    http_method_names = ['post']
+    model = AuthUser
+    serializer = RegistrationSerializer
+
+    def post(self, request):
+        serializer = self.serializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        username = serializer.data.get('username')
+        password = make_password(serializer.data.get('password'))
+
+        user = self.model.objects.create(username=username, password=password)
+
+        client = Client()
+        client.user = user
+
+        client.save()
+
+        return Response(ClientSerializer(client).data, status.HTTP_200_OK)

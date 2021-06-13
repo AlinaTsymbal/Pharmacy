@@ -3,7 +3,7 @@ import base64
 from rest_framework import serializers
 
 from api.models import Remedy, Category, RemedySet, MedKit, PharmacyRemedy, Pharmacy, Basket, Client, BasketRemedy, \
-    OrderRemedy, Order, Admin
+    OrderRemedy, Order, Admin, AuthUser
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -260,3 +260,13 @@ class OrderSerializer(serializers.ModelSerializer):
             'created_at',
             'id',
         ]
+
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuthUser
+        fields = [
+            'username',
+            'password',
+        ]
+

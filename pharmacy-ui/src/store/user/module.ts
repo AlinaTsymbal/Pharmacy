@@ -5,7 +5,7 @@ import {
   GET_USER,
   LOGIN_USER,
   LOGOUT,
-  MAKE_ORDER,
+  MAKE_ORDER, REGISTER,
 } from '@/store/user/actions';
 import {
   SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER,
@@ -93,6 +93,12 @@ const actions = {
       .then((response) => {
         console.log(response.data);
         context.commit(SET_ORDERS, response.data);
+      });
+  },
+  [REGISTER]: (context: any, user: any) => {
+    Api.post('register', user)
+      .then(() => {
+        context.dispatch(LOGIN_USER, user);
       });
   },
 };

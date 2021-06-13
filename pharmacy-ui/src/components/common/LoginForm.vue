@@ -32,7 +32,11 @@
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary" html-type="submit" class="login-form-button">
+          <a-button
+            type="primary"
+            html-type="submit"
+            class="login-form-button"
+          >
             Log in
           </a-button>
         </a-form-item>

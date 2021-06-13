@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import RegistrationForm from '@/components/common/RegistrationForm';
 import LoginForm from '../components/common/LoginForm';
-import RegistrationForm from "@/components/common/RegistrationForm";
+
 export default {
   name: 'AuthorizationPage',
-  components: {RegistrationForm, LoginForm},
+  components: {
+    RegistrationForm,
+    LoginForm,
+  },
 };
 </script>
 

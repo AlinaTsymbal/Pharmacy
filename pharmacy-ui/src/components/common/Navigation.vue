@@ -1,5 +1,8 @@
 <template>
   <div class="navigation-wrapper">
+    <div class="service-name-wrapper">
+      <span> Сервіс П&П Ліків</span>
+    </div>
     <a-tabs :active-key="activeKey" @change="forward">
       <a-tab-pane key="/home" tab="Головна сторінка"/>
       <a-tab-pane key="/catalog" tab="Каталог"/>
@@ -98,6 +101,18 @@ export default {
 
     .basket-popup-trigger {
       margin-left: 2rem;
+    }
+  }
+
+  .service-name-wrapper {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+
+    span {
+      font-size: 1rem;
+      color: blue;
+      font-weight: bolder;
     }
   }
 }
