@@ -1,10 +1,10 @@
 <template>
   <div class="remedy-set-wrapper">
     <div class="set-name-wrapper">
-      <span> {{ set.name }} </span>
+      <span class="set-name"> {{ set.name }} </span>
     </div>
-    <div class="set-info-wrapper">
-      <span> {{ set.info }} </span>
+    <div v-for="d in description" class="set-info-wrapper">
+      <span> {{ d }} </span>
     </div>
     <RemedySetRemedies :remedies="set.remedies"/>
   </div>
@@ -22,6 +22,11 @@ export default {
   props: {
     set: Object,
   },
+  computed: {
+    description() {
+      return this.set?.description.split('\\n');
+    },
+  },
 };
 </script>
 
@@ -30,12 +35,20 @@ export default {
   display: flex;
   flex-direction: column;
 
-  .set-name-wrapper, .set-info-wrapper {
-    margin: 2rem 0;
-    span {
+  .set-name-wrapper {
+
+    .set-name {
       float: left;
+      text-align: left;
       font-size: large;
       font-weight: bold;
+    }
+  }
+
+  .set-info-wrapper {
+    span {
+      float: left;
+      text-align: left;
     }
   }
 }

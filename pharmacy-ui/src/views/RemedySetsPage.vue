@@ -1,8 +1,8 @@
 <template>
   <div class="remedy-sets-page-wrapper">
     <div class="sets-info-wrapper" >
-      <span style=" width: 40rem; font-size: large;">
-        На цій сторінці створено набори , які складаються з певного переліку лікарських засобів, що були додані відповідно до хвороб , що зазначені в назвах. Зареєстровані користувачі можуть редагувати склад наборів за власними побажаннями.
+      <span class="about-text">
+        {{ aboutText }}
       </span>
     </div>
     <RemedySet
@@ -14,9 +14,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { GET_REMEDY_SETS } from '@/store/remedy-sets/actions';
 import RemedySet from '../components/sets/RemedySet.vue';
-import {mapGetters} from 'vuex';
-import {GET_REMEDY_SETS} from "@/store/remedy-sets/actions";
 
 export default {
   name: 'RemedySetsPage',
@@ -28,6 +28,16 @@ export default {
       'remedySets',
     ]),
   },
+  data() {
+    return {
+      aboutText: 'На цій сторінці зібрано набори, що складаються з певного переліку лікарських '
+        + 'засобів, які були додані відповідно до захворювання , що зазначено в назві кожного '
+        + 'набору.Також призначення кожного препарату коротко описано в складі кожної з аптечок.'
+        + ' При авторизації Ви зможете редагувати склад аптечок за власними побажаннями.'
+        + '(При використанні будь-яких препаратів потрібно звернутись за консультацією до'
+        + ' сімейного лікаря).',
+    };
+  },
   mounted() {
     this.$store.dispatch(GET_REMEDY_SETS);
   },
@@ -38,11 +48,18 @@ export default {
 .remedy-sets-page-wrapper {
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: auto;
 
   .sets-info-wrapper {
-    span {
+    margin: auto;
+    padding-bottom: 4rem;
+
+    .about-text {
+      font-weight: bolder;
       font-size: large;
-      font-weight: bold;
+      display:block;
+      text-align: left;
     }
   }
 
