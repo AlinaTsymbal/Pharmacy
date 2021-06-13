@@ -20,6 +20,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 90rem;
 }
 
 .links-wrapper > * {

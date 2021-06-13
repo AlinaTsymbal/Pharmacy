@@ -21,8 +21,8 @@ export default {
 
 <style scoped lang="scss">
 .link {
-  width: 30rem;
-  height: 30rem;
+  width: 100%;
+  height: 25rem;
   background-size: 30rem 30rem;
   border: 1px solid black;
   border-radius: 1rem;

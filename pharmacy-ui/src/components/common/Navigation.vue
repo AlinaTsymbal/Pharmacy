@@ -13,16 +13,16 @@
     </a-tabs>
     <div class="additional-links-wrapper">
       <div class="authorization-links" v-if="!loggedIn">
-        <a @click="redirectLogin">Login/Register</a>
+        <a @click="redirectLogin">Вхід/Реєстрація</a>
       </div>
       <div class="authorization-links" v-if="loggedIn">
-        <a @click="hadleLogout">Logout</a>
+        <a @click="hadleLogout">Вийти</a>
       </div>
       <a-popover title="Basket" trigger="hover">
         <template slot="content">
           <Basket :items="items"/>
         </template>
-        <a type="primary" class="basket-popup-trigger"> Basket </a>
+        <a type="primary" class="basket-popup-trigger"> Кошик </a>
       </a-popover>
     </div>
   </div>

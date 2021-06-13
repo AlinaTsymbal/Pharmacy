@@ -10,6 +10,7 @@
         <p v-for="d in pharmacies">
           {{ `${d.details.name} за адресою ${d.details.address} за ціною ${d.price}` }}
         </p>
+        <a-button style="margin-top: 14rem">Додати в кошик</a-button>
       </div>
     </div>
     <div class="property">

@@ -108,7 +108,7 @@ export default {
 
   .about-service {
     font-size: 1.5rem;
-    width: 40%;
+    width: 80%;
     font-weight: bold;
   }
 }
