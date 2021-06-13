@@ -67,13 +67,13 @@ export default {
     };
   },
   mounted() {
-    this.activeKey = this.$router.currentRoute.path.split('/')[1];
+    this.activeKey = `/${this.$router.currentRoute.path.split('/')[1]}`;
   },
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
         // eslint-disable-next-line prefer-destructuring
-        this.activeKey = to.path.split('/')[1];
+        this.activeKey = `/${to.path.split('/')[1]}`;
       }
     },
   },
