@@ -75,7 +75,7 @@ class AuthUser(AbstractUser):
 
 
 class Client(models.Model):
-    user = models.OneToOneField(AuthUser, models.CASCADE, related_name='client_data')
+    user = models.OneToOneField(AuthUser, models.CASCADE, related_name='client_data', primary_key=True)
     phone = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
 
@@ -83,7 +83,7 @@ class Client(models.Model):
         db_table = 'client'
 
 
-class Admin(AuthUser):
+class Admin(models.Model):
     user = models.OneToOneField(AuthUser, models.CASCADE, primary_key=True, related_name='admin_data')
 
     class Meta:
