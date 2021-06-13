@@ -6,18 +6,18 @@
     <div v-for="d in description" class="set-info-wrapper">
       <span> {{ d }} </span>
     </div>
-    <RemedySetRemedies :remedies="set.remedies"/>
+    <RemedyList :remedies="set.remedies"/>
   </div>
 </template>
 
 <script>
 
-import RemedySetRemedies from '@/components/sets/RemedySetRemedies.vue';
+import RemedyList from '@/components/catalog/RemedyList';
 
 export default {
   name: 'RemedySet',
   components: {
-    RemedySetRemedies,
+    RemedyList,
   },
   props: {
     set: Object,

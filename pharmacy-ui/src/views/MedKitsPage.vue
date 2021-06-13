@@ -43,6 +43,7 @@ export default {
 
 <style scoped lang="scss">
 .med-kits-page-wrapper {
+  margin: auto;
   display: flex;
   flex-direction: column;
 

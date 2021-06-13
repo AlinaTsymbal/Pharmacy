@@ -16,8 +16,8 @@
       <span class="remedy-name">{{ remedy.name }}</span>
     </div>
     <div class="item-links">
-      <a class="details-link" @click="onDetailsClick">Details</a>
-      <a class="add-to-basket-link" @click="onBasketClick">Add to basket</a>
+      <a class="details-link" @click="onDetailsClick">Детальніше</a>
+      <a class="add-to-basket-link" @click="onBasketClick">Додати в кошик</a>
     </div>
   </a-card>
 </template>
@@ -48,33 +48,36 @@ export default {
 
 <style scoped lang="scss">
 .ant-card {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  .remedy-image-wrapper {
-    height: 60%;
-
-    img {
-      padding: 1rem;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  .remedy-name-wrapper {
+  .ant-card-body {
+    height: 27rem;
+    width: 18rem;
     display: flex;
+    flex-direction: column;
 
-    .remedy-name {
-      float: left;
+    .remedy-image-wrapper {
+      height: 25rem;
+      width: 18rem;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
-  }
 
-  .item-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    .remedy-name-wrapper {
+      display: flex;
+
+      .remedy-name {
+        float: left;
+      }
+    }
+
+    .item-links {
+      margin-top: auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }
 

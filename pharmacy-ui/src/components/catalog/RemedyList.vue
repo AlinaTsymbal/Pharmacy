@@ -1,15 +1,10 @@
 <template>
   <div class="remedy-list">
-    <div
-      class="remedy-item-wrapper"
+    <RemedyItem
       v-for="item in remedies"
       :key="item.id"
-    >
-      <RemedyItem
-        style="height: 20rem; width: 15rem"
-        :remedy="item"
-      />
-    </div>
+      :remedy="item"
+    />
   </div>
 </template>
 
@@ -33,10 +28,6 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-
-  .remedy-item-wrapper {
-    width: 20%;
-  }
 }
 
 .remedy-list > * {
