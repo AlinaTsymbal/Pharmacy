@@ -35,7 +35,7 @@ export default {
   width: 100%;
 
   .remedy-item-wrapper {
-    width: 28%;
+    width: 20%;
   }
 }
 

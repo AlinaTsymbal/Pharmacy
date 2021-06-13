@@ -3,8 +3,8 @@
     <div class="med-kit-name-wrapper">
       <span> {{ kit.name }} </span>
     </div>
-    <div class="med-kit-info-wrapper">
-      <span> {{ kit.description }} </span>
+    <div v-for="d in description" class="med-kit-info-wrapper">
+      <span> {{ d }} </span>
     </div>
 
     <div class="med-kit-remedies-wrapper">
@@ -23,6 +23,11 @@ export default {
   components: {
     RemedyList,
   },
+  computed: {
+    description() {
+      return this.kit?.description.split('\\n');
+    },
+  },
   props: {
     kit: Object,
   },
@@ -33,13 +38,20 @@ export default {
 .med-kit-wrapper {
   display: flex;
   flex-direction: column;
+  width: 80%;
 
-  .med-kit-name-wrapper, .med-kit-info-wrapper {
+  .med-kit-name-wrapper {
     span {
       float: left;
-      margin: 1rem;
       font-size: large;
       font-weight: bold;
+    }
+  }
+
+  .med-kit-info-wrapper {
+    span {
+      float: left;
+      font-size: larger;
     }
   }
 }
