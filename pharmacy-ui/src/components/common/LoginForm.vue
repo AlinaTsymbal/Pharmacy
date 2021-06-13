@@ -10,6 +10,7 @@
       >
         <a-form-item>
           <a-input
+            v-model="username"
             v-decorator="[
           'username',
           { rules: [{ required: true, message: 'Please input your username!' }] },
@@ -21,6 +22,7 @@
         </a-form-item>
         <a-form-item>
           <a-input
+            v-model="password"
             v-decorator="[
           'password',
           { rules: [{ required: true, message: 'Please input your Password!' }] },
@@ -46,19 +48,29 @@
 </template>
 
 <script>
-import { LOGIN_USER } from '@/store/user/actions';
+import { LOGIN_USER, REGISTER } from '@/store/user/actions';
 
 export default {
   name: 'LoginForm',
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: 'normal_login' });
   },
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.$store.dispatch(LOGIN_USER, values);
+          console.log(values);
+          this.$store.dispatch(LOGIN_USER, {
+            username: this.username,
+            password: this.password,
+          });
         }
       });
     },

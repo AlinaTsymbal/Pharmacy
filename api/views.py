@@ -15,7 +15,7 @@ class Me(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        user = Client.objects.filter(id=request.user.id).first()
+        user = Client.objects.filter(user_id=request.user.id).first()
 
         if user is not None:
             return Response(ClientSerializer(user).data, status.HTTP_200_OK)
@@ -85,7 +85,7 @@ class BasketView(APIView):
     def get(self, request):
         basket = self.model.objects.filter(client_id=request.user.id).first()
         if basket is None:
-            basket = self.model.objects.create(client=Client.objects.get(id=request.user.id))
+            basket = self.model.objects.create(client=Client.objects.get(user_id=request.user.id))
         return Response(
             BasketSerializer(basket).data,
             status.HTTP_200_OK,
