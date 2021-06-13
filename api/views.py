@@ -20,7 +20,10 @@ class Me(APIView):
         if user is not None:
             return Response(ClientSerializer(user).data, status.HTTP_200_OK)
         else:
-            return Response(AdminSerializer(Admin.objects.filter(id=request.user.id).first()).data, status.HTTP_200_OK)
+            return Response(
+                AdminSerializer(Admin.objects.filter(user_id=request.user.id).first()).data,
+                status.HTTP_200_OK
+            )
 
 
 class Categories(APIView):
