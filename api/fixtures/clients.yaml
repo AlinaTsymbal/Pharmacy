@@ -1,0 +1,20 @@
+- model: api.client
+  pk: 1
+  fields:
+    phone: '+123213452143'
+    address: some addess
+- model: api.client
+  pk: 2
+  fields:
+    phone: null
+    address: null
+- model: api.client
+  pk: 4
+  fields:
+    phone: null
+    address: null
+- model: api.client
+  pk: 5
+  fields:
+    phone: null
+    address: null

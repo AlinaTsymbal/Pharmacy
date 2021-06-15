@@ -1,0 +1,80 @@
+- model: api.authuser
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$260000$ccLvLmL6XcreimxqN1eyF4$+UghSWnbpQDzTtj2jje2bcN4Imdo6McsDvpyb1Yq6v0=
+    last_login: null
+    is_superuser: false
+    username: dude
+    first_name: Jack
+    last_name: Jack
+    email: test@gmail.com
+    is_staff: false
+    is_active: true
+    date_joined: 2021-06-13 16:13:12.925574+00:00
+    type: CLIENT
+    groups: []
+    user_permissions: []
+- model: api.authuser
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$260000$oFQnOBJdH1oMd6BMsjTt1B$NfHy/2UHQTljzQICcxRA79Z3bvhkEz3UQLDgQ3TI4Qo=
+    last_login: null
+    is_superuser: false
+    username: dude2
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2021-06-13 16:16:59.388365+00:00
+    type: CLIENT
+    groups: []
+    user_permissions: []
+- model: api.authuser
+  pk: 3
+  fields:
+    password: pbkdf2_sha256$260000$caQftVF4mSqpefdY5l6Hzx$1E5eNDwI4eob8z+kL7JrSlEyFN63Nq2wTHCPzb9CQyc=
+    last_login: null
+    is_superuser: false
+    username: admin
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2021-06-13 16:21:21.823243+00:00
+    type: ADMIN
+    groups: []
+    user_permissions: []
+- model: api.authuser
+  pk: 4
+  fields:
+    password: pbkdf2_sha256$260000$caQftVF4mSqpefdY5l6Hzx$1E5eNDwI4eob8z+kL7JrSlEyFN63Nq2wTHCPzb9CQyc=
+    last_login: null
+    is_superuser: false
+    username: test
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2021-06-13 16:23:32.552291+00:00
+    type: CLIENT
+    groups: []
+    user_permissions: []
+- model: api.authuser
+  pk: 5
+  fields:
+    password: pbkdf2_sha256$260000$p61J6MTI6Nk4Q1zaVexMSi$egY2d1RCQX41fla/VQ7SsWXudvVrLdacZYdfyvXa/Ys=
+    last_login: null
+    is_superuser: false
+    username: test_user_1
+    first_name: Ім'я не вказано
+    last_name: Прізвище не вказано
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2021-06-15 16:58:29.481904+00:00
+    type: CLIENT
+    groups: []
+    user_permissions: []
