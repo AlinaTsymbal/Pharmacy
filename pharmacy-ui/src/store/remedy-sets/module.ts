@@ -1,8 +1,10 @@
-
-import {Api} from "@/utils/api";
-import {GET_REMEDY_SETS} from "@/store/remedy-sets/actions";
-import {SET_REMEDY_SETS} from "@/store/remedy-sets/mutations";
-import RemedySetModel from "@/models/RemedySetModel";
+import { Api } from '@/utils/api';
+import { ADD_SET_TO_BASKET, GET_REMEDY_SETS } from '@/store/remedy-sets/actions';
+import { SET_REMEDY_SETS } from '@/store/remedy-sets/mutations';
+import RemedySetModel from '@/models/RemedySetModel';
+import { SET_BASKET } from '@/store/catalog/mutations';
+import { notification } from 'ant-design-vue';
+import router from '@/router';
 
 interface State {
   remedySets: RemedySetModel[];
@@ -26,6 +28,21 @@ const actions = {
       })
       .catch((err) => {
         console.log(err);
+      });
+  },
+  [ADD_SET_TO_BASKET]: (context: any, set: RemedySetModel) => {
+    Api.post('basket', { remedies: set.remedies.map((r) => r.id) })
+      .then((response) => {
+        context.commit(SET_BASKET, response.data);
+        notification.success({
+          message: 'Набір додано в корзину',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        router.push('authorization');
       });
   },
 };

@@ -147,7 +147,8 @@ class BasketSerializer(serializers.ModelSerializer):
 
 
 class AddToBasketSerializer(serializers.Serializer):
-    remedy = serializers.PrimaryKeyRelatedField(queryset=Remedy.objects.all(), required=True)
+    remedy = serializers.PrimaryKeyRelatedField(queryset=Remedy.objects.all(), required=False)
+    remedies = serializers.PrimaryKeyRelatedField(queryset=Remedy.objects.all(), many=True, required=False)
     amount = serializers.IntegerField(default=1, required=False)
     pharmacy = serializers.PrimaryKeyRelatedField(queryset=Pharmacy.objects.all(), required=False)
 
@@ -187,10 +188,10 @@ class BasketRemedySerializer(serializers.ModelSerializer):
 
         remedy = ShortRemedySerializer(instance.remedy).data
 
-        pharmacy_set = instance.remedy.pharmacyremedy_set.all()
+        pharmacy_set = instance.remedy.pharmacies.all()
 
         data['name'] = remedy.get('name')
-        data['pharmacy'] = instance.remedy.pharmacyremedy_set.first().pharmacy.id
+        data['pharmacy'] = instance.remedy.pharmacies.first().pharmacy.id
         data['pharmacies'] = PharmacySerializer([p.pharmacy for p in pharmacy_set], many=True).data
         for (i, p) in enumerate(pharmacy_set):
             data['pharmacies'][i]['price'] = p.price

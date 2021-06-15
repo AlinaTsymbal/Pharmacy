@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import router from "@/router";
+import router from '@/router';
 
 export default {
   name: 'Basket',
@@ -50,7 +50,16 @@ export default {
 
 <style scoped lang="scss">
 .basket-wrapper {
+  padding: 2rem;
   width: 20rem;
+  position: fixed;
+  right: 5rem;
+  top: 5rem;
+  background-color: white;
+  border: 0.5px solid lightgray;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 
   .basket-content-wrapper {
     width: 100%;
@@ -71,7 +80,8 @@ export default {
   }
 
   .footer {
-    margin-top: 1rem;
+    margin: 1rem 0;
+    align-self: center;
   }
 }
 </style>

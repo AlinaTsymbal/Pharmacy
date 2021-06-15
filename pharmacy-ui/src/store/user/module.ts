@@ -13,6 +13,7 @@ import {
 import { setAuthToken, setUserData } from '@/utils/authorization';
 import router from '@/router';
 import { notification } from 'ant-design-vue';
+import { GET_BASKET } from '@/store/catalog/actions';
 
 interface State {
   user: any;
@@ -55,6 +56,7 @@ const actions = {
     Api.post('login', user)
       .then((response) => {
         setUserData(context, response.data);
+        context.dispatch(GET_BASKET);
         router.push('home');
       });
   },

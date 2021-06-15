@@ -1,7 +1,7 @@
 <template>
   <div class="med-kits-page-wrapper">
-    <div class="med-kits-info-wrapper">
-      <span style=" width: 20rem; font-size: large;">{{aboutPage}}</span>
+    <div class="med-kits-info-wrapper" style="width: 100%">
+      <span style="font-size: large;">{{aboutPage}}</span>
     </div>
     <div
       class="med-kits-list"
@@ -43,10 +43,10 @@ export default {
 
 <style scoped lang="scss">
 .med-kits-page-wrapper {
+  width: 80%;
   margin: auto;
   display: flex;
   flex-direction: column;
-
 }
 
 .med-kits-page-wrapper > * {

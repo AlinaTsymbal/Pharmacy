@@ -1,18 +1,28 @@
 <template>
-  <div class="remedy-set-wrapper">
-    <div class="set-name-wrapper">
-      <span class="set-name"> {{ set.name }} </span>
+  <a-card style="margin: 2rem 0">
+    <div class="remedy-set-wrapper">
+      <div class="set-name-wrapper">
+        <span class="set-name"> {{ set.name }} </span>
+      </div>
+      <div v-for="d in description" class="set-info-wrapper">
+        <span> {{ d }} </span>
+      </div>
+      <RemedyList :remedies="set.remedies"/>
+      <a-button
+        style="width: 75%;
+         align-self: center"
+        @click="addToBasket"
+      >
+        Додати набір в корзину
+      </a-button>
     </div>
-    <div v-for="d in description" class="set-info-wrapper">
-      <span> {{ d }} </span>
-    </div>
-    <RemedyList :remedies="set.remedies"/>
-  </div>
+  </a-card>
 </template>
 
 <script>
 
 import RemedyList from '@/components/catalog/RemedyList';
+import { ADD_SET_TO_BASKET } from '@/store/remedy-sets/actions';
 
 export default {
   name: 'RemedySet',
@@ -25,6 +35,11 @@ export default {
   computed: {
     description() {
       return this.set?.description.split('\\n');
+    },
+  },
+  methods: {
+    addToBasket() {
+      this.$store.dispatch(ADD_SET_TO_BASKET, this.set);
     },
   },
 };

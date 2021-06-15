@@ -12,6 +12,7 @@
         :remedies="kit.remedies"
       />
     </div>
+    <a-button style="width: 75%; align-self: center"> Додати аптечку в корзину </a-button>
   </div>
 </template>
 
@@ -38,7 +39,7 @@ export default {
 .med-kit-wrapper {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 
   .med-kit-name-wrapper {
     span {

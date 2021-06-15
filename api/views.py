@@ -85,6 +85,17 @@ class BasketView(APIView):
     model = Basket
     permission_classes = (permissions.IsAuthenticated,)
 
+    def add_remedy(self, basket, remedy_id):
+        remedy = basket.basket_remedies.filter(remedy_id=remedy_id).first()
+
+        if remedy is not None:
+            remedy.amount += 1
+            remedy.save()
+        else:
+            basket.basket_remedies.create(remedy_id=remedy_id)
+
+        return basket
+
     def get(self, request):
         basket = self.model.objects.filter(client_id=request.user.id).first()
         if basket is None:
@@ -102,17 +113,22 @@ class BasketView(APIView):
 
         basket = self.model.objects.filter(client_id=request.user.id).first()
         if basket is None:
-            basket = self.model.objects.create(client=Client.objects.get(id=request.user.id))
+            try:
+                basket = self.model.objects.create(client=Client.objects.get(user_id=request.user.id))
+            except:
+                return Response(status=status.HTTP_403_FORBIDDEN)
+        remedy_data = serializer.data.get('remedy', None)
+        remedies_data = serializer.data.get('remedies', None)
 
-        remedy = basket.basket_remedies.filter(remedy_id=serializer.data.get('remedy')).first()
+        if remedy_data is not None:
+            self.add_remedy(basket, remedy_data)
 
-        if remedy is not None:
-            remedy.amount += 1
-            remedy.save()
-        else:
-            basket.basket_remedies.create(remedy_id=serializer.data.get('remedy'))
-
-        return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+            return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+        if remedies_data is not None:
+            for r in remedies_data:
+                self.add_remedy(basket, r)
+            return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class OrderView(APIView):

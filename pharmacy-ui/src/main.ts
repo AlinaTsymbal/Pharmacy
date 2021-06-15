@@ -4,10 +4,10 @@ import Antd from 'ant-design-vue';
 import axios from 'axios';
 import Vue from 'vue';
 import VuexAxios from 'vue-axios';
+import { setAuthInterceptor, setAuthToken } from '@/utils/authorization';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import {setAuthInterceptor, setAuthToken} from "@/utils/authorization";
 
 Vue.config.productionTip = false;
 
@@ -19,7 +19,6 @@ const token = localStorage.getItem('auth-token');
 if (token) {
   setAuthToken(token);
 }
-
 
 export const eventBus = new Vue();
 

@@ -90,8 +90,7 @@ const actions = {
           duration: 4.5,
         });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         router.push('authorization');
       });
   },
