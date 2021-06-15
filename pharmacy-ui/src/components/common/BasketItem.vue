@@ -17,7 +17,7 @@
       </a-select-option>
     </a-select>
     <div v-if="beingEdited" style="width: 50%; padding-left: 5%">
-      <RemedyAutoComplete :hide-search="true" style=""/>
+      <RemedyAutoComplete :hide-search="true" :on-select="handleReplace"/>
     </div>
     <div class="item-amount">
       <a-input type="number" v-model="amount" @change="handleAmountChange" :disabled="beingEdited"/>
@@ -40,12 +40,14 @@
 </template>
 
 <script>
-import { DELETE_FROM_BASKET } from '@/store/user/actions';
+import { DELETE_FROM_BASKET, REPLACE_IN_BASKET } from '@/store/user/actions';
 import RemedyAutoComplete from '@/components/common/RemedyAutoComplete';
 
 export default {
   name: 'BasketItem',
-  components: { RemedyAutoComplete },
+  components: {
+    RemedyAutoComplete,
+  },
   props: {
     remedies: Array,
     item: Object,
@@ -80,6 +82,9 @@ export default {
       this.onSelect(this.item.id, value);
       this.selectedPharmacyId = value;
       this.selectedPharmacy = this.item.pharmacies.find((p) => p.id === this.selectedPharmacyId);
+    },
+    handleReplace(id) {
+      this.$store.dispatch(REPLACE_IN_BASKET, { id: this.item.id, remedy: id });
     },
     handleAmountChange() {
       if ((this.amount) !== '') {

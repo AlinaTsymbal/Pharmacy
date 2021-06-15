@@ -16,7 +16,6 @@ import {
 } from '@/store/catalog/mutations';
 import RemedyModel from '@/models/RemedyModel';
 import { notification } from 'ant-design-vue';
-import router from '@/router';
 import DetailsRemedyModel from '@/models/DetailsRemedyModel';
 
 interface State {

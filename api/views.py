@@ -134,15 +134,30 @@ class BasketView(APIView):
         basket = self.model.objects.filter(client_id=request.user.id).first()
         if basket is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
         record_id = request.data.get('id', None)
 
         if record_id is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        basket.basket_remedies.filter(id=record_id).delete()
+        if request.query_params.get('delete', False):
+            basket.basket_remedies.filter(id=record_id).delete()
 
-        return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+            return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+        if request.query_params.get('replace', False):
+            remedy_id = request.data.get('remedy')
+            basket_remedy = basket.basket_remedies.filter(id=record_id).first()
+            new_remedy = basket.basket_remedies.filter(remedy_id=remedy_id).first()
+
+            if new_remedy is not None:
+                new_remedy.amount += 1
+                new_remedy.save()
+                basket_remedy.delete()
+            else:
+                basket_remedy.remedy_id = remedy_id
+                basket_remedy.save()
+
+            return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class OrderView(APIView):

@@ -6,7 +6,7 @@ import {
   GET_USER,
   LOGIN_USER,
   LOGOUT,
-  MAKE_ORDER, REGISTER,
+  MAKE_ORDER, REGISTER, REPLACE_IN_BASKET,
 } from '@/store/user/actions';
 import {
   SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER,
@@ -120,6 +120,27 @@ const actions = {
       .catch(() => {
         notification.warn({
           message: 'Товар не вдалось видалити',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      });
+  },
+  [REPLACE_IN_BASKET]: (context: any, { id, remedy } : {id: number, remedy: number}) => {
+    Api.patch('basket?replace=true', { id, remedy })
+      .then(() => {
+        context.dispatch(GET_ORDER);
+        context.dispatch(GET_BASKET);
+        notification.success({
+          message: 'Товар замінено',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        notification.warn({
+          message: 'Товар не вдалось замінити',
           description: '',
           placement: 'topRight',
           duration: 4.5,
