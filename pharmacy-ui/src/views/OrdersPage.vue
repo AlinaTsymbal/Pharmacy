@@ -56,7 +56,7 @@ export default {
 
 <style scoped lang="scss">
 .orders-page-wrapper {
-  width: 80%;
+  width: 100%;
   margin: auto;
 
   .orders-table {

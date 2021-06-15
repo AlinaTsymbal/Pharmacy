@@ -18,7 +18,7 @@
       <div class="authorization-links" v-if="loggedIn">
         <a @click="hadleLogout">Вийти</a>
       </div>
-      <Basket :items="items" v-if="loggedIn" class="basket-popup-trigger"/>
+      <Basket :items="items" v-if="loggedIn && !isAdmin" class="basket-popup-trigger"/>
     </div>
   </div>
 </template>

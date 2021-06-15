@@ -1,5 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -97,6 +98,8 @@ class BasketView(APIView):
         return basket
 
     def get(self, request):
+        if request.user.type == 'ADMIN':
+            return Response(status.HTTP_403_FORBIDDEN)
         basket = self.model.objects.filter(client_id=request.user.id).first()
         if basket is None:
             basket = self.model.objects.create(client=Client.objects.get(user_id=request.user.id))
@@ -210,7 +213,12 @@ class Registration(APIView):
         username = serializer.data.get('username')
         password = make_password(serializer.data.get('password'))
 
-        user = self.model.objects.create(username=username, password=password)
+        user = self.model.objects.create(
+            username=username,
+            password=password,
+            first_name="Ім'я не вказано",
+            last_name="Прізвище не вказано",
+        )
 
         client = Client()
         client.user = user
@@ -218,3 +226,16 @@ class Registration(APIView):
         client.save()
 
         return Response(ClientSerializer(client).data, status.HTTP_200_OK)
+
+
+class CloseOrder(APIView):
+    http_method_names = ['post']
+    model = Order
+
+    def post(self, request):
+        order = self.model.objects.get(id=request.data.get('orderId'))
+
+        order.resolved_at = timezone.now()
+        order.save()
+
+        return Response(OrderSerializer(self.model.objects.all(), many=True).data, status.HTTP_200_OK)

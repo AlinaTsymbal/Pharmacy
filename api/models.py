@@ -133,3 +133,7 @@ class OrderRemedy(models.Model):
     @property
     def price(self):
         return self.remedy.pharmacies.get(pharmacy_id=self.pharmacy.id).price
+
+    @property
+    def is_available(self):
+        return self.remedy.pharmacies.filter(pharmacy_id=self.pharmacy.id).first().is_available

@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView
 
 from api.views import RemediesView, Categories, RemedySets, MedKits, BasketView, Me, OrderView, \
-    ListOrder, RemedyDetails, Registration
+    ListOrder, RemedyDetails, Registration, CloseOrder
 
 urlpatterns = [
     path('categories', Categories.as_view()),
@@ -17,4 +17,5 @@ urlpatterns = [
     path('order', OrderView.as_view()),
     path('orders', ListOrder.as_view()),
     path('register', Registration.as_view()),
+    path('orders/close', CloseOrder.as_view()),
 ]

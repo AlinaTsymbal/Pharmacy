@@ -7,3 +7,4 @@ export const GET_ORDERS = 'GET_ORDERS';
 export const REGISTER = 'REGISTER';
 export const DELETE_FROM_BASKET = 'DELETE_FROM_BASKET';
 export const REPLACE_IN_BASKET = 'REPLACE_IN_BASKET';
+export const CLOSE_ORDER = 'CLOSE_ORDER';

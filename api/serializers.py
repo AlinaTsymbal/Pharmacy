@@ -161,6 +161,8 @@ class ClientSerializer(serializers.ModelSerializer):
         data = super(ClientSerializer, self).to_representation(instance)
 
         data['type'] = 'CLIENT'
+        data['first_name'] = instance.user.first_name
+        data['last_name'] = instance.user.last_name
 
         return data
 
@@ -243,6 +245,7 @@ class OrderRemedySerializer(serializers.ModelSerializer):
     pharmacy = PharmacySerializer()
     amount = serializers.IntegerField()
     price = serializers.FloatField()
+    isAvailable = serializers.BooleanField(source='is_available')
 
     class Meta:
         model = OrderRemedy
@@ -259,6 +262,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'remedies',
             'client',
             'created_at',
+            'resolved_at',
             'id',
         ]
 

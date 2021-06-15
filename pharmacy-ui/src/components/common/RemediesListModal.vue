@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    width="50rem"
+    width="70rem"
     :visible="visible"
     @cancel="() => this.visible = false"
     @ok="() => this.visible = false"
@@ -11,23 +11,28 @@
         <div>Аптека</div>
         <div>Ціна</div>
         <div>Кількість</div>
+        <div>В наявності</div>
       </div>
     </div>
+    <a-divider/>
     <div v-for="item in items" :key="item.id" class="row">
       <div>{{ item.remedy.name }}</div>
       <div>{{ item.pharmacy.name }}</div>
       <div>{{ item.price }}</div>
       <div>{{ item.amount }}</div>
+      <div>{{ item.isAvailable ? 'Так' : 'Ні' }}</div>
     </div>
-    </div>
+    <template slot="footer">
+      <a-button @click="close"> Закрити</a-button>
+    </template>
   </a-modal>
 </template>
 
 <script>
-import {eventBus} from "@/main";
+import { eventBus } from '@/main';
 
 export default {
-  name: "RemediesListModal",
+  name: 'RemediesListModal',
   props: {
     items: Array,
   },
@@ -35,6 +40,11 @@ export default {
     return {
       visible: false,
     };
+  },
+  methods: {
+    close() {
+      this.visible = false;
+    },
   },
   mounted() {
     eventBus.$on('openListModal', () => {

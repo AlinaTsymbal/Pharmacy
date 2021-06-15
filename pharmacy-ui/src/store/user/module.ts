@@ -1,5 +1,6 @@
 import { Api } from '@/utils/api';
 import {
+  CLOSE_ORDER,
   DELETE_FROM_BASKET,
   GET_ORDER,
   GET_ORDERS,
@@ -141,6 +142,26 @@ const actions = {
       .catch(() => {
         notification.warn({
           message: 'Товар не вдалось замінити',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      });
+  },
+  [CLOSE_ORDER]: (context: any, id: number) => {
+    Api.post('orders/close', { orderId: id })
+      .then((response) => {
+        context.commit(SET_ORDERS, response.data);
+        notification.success({
+          message: 'Замовлення було закрто',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        notification.warn({
+          message: 'Замовлення не вдалось закрити',
           description: '',
           placement: 'topRight',
           duration: 4.5,
