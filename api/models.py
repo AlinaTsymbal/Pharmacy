@@ -59,6 +59,7 @@ class PharmacyRemedy(models.Model):
     pharmacy = models.ForeignKey(Pharmacy, models.DO_NOTHING, null=True, blank=True)
     remedy = models.ForeignKey(Remedy, models.DO_NOTHING, null=True, blank=True, related_name='pharmacies')
     price = models.TextField(null=True, blank=True)
+    is_available = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'pharmacy_remedy'

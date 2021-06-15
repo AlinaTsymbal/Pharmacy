@@ -84,6 +84,7 @@ export default {
       this.selectedPharmacy = this.item.pharmacies.find((p) => p.id === this.selectedPharmacyId);
     },
     handleReplace(id) {
+      this.beingEdited = false;
       this.$store.dispatch(REPLACE_IN_BASKET, { id: this.item.id, remedy: id });
     },
     handleAmountChange() {
