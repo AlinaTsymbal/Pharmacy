@@ -1,4 +1,3 @@
-import router from '@/router';
 import store from '@/store';
 import axios from 'axios';
 import { SET_TOKEN, SET_USER } from '@/store/user/mutations';

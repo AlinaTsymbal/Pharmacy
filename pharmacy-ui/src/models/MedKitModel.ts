@@ -1,4 +1,4 @@
-import RemedyModel from '@/models/RemedyModel.vue';
+import RemedyModel from '@/models/RemedyModel';
 
 export default interface MedKitModel {
   id: number;

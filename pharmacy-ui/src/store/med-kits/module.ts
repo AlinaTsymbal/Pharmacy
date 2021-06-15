@@ -1,7 +1,10 @@
 import MedKitModel from '@/models/MedKitModel';
-import {GET_MED_KITS} from '@/store/med-kits/actions';
-import {SET_MED_KITS} from '@/store/med-kits/mutations';
-import {Api} from "@/utils/api";
+import { ADD_MED_KIT_TO_BASKET, GET_MED_KITS } from '@/store/med-kits/actions';
+import { SET_MED_KITS } from '@/store/med-kits/mutations';
+import { Api } from '@/utils/api';
+import { SET_BASKET } from '@/store/catalog/mutations';
+import { notification } from 'ant-design-vue';
+import router from '@/router';
 
 interface State {
   medKits: MedKitModel[];
@@ -25,6 +28,21 @@ const actions = {
       })
       .catch((err) => {
         console.log(err);
+      });
+  },
+  [ADD_MED_KIT_TO_BASKET]: (context: any, kit: MedKitModel) => {
+    Api.post('basket', { remedies: kit.remedies.map((r) => r.id) })
+      .then((response) => {
+        context.commit(SET_BASKET, response.data);
+        notification.success({
+          message: 'Аптечку додано в корзину',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        router.push('authorization');
       });
   },
 };

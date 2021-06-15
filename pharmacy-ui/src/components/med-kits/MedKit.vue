@@ -1,4 +1,5 @@
 <template>
+  <a-card style="margin: 2rem 0">
   <div class="med-kit-wrapper">
     <div class="med-kit-name-wrapper">
       <span> {{ kit.name }} </span>
@@ -12,11 +13,19 @@
         :remedies="kit.remedies"
       />
     </div>
-    <a-button style="width: 75%; align-self: center"> Додати аптечку в корзину </a-button>
+    <a-button
+      style="width: 75%;
+         align-self: center"
+      @click="addToBasket"
+    >
+      Додати набір в корзину
+    </a-button>
   </div>
+  </a-card>
 </template>
 
 <script>
+import { ADD_MED_KIT_TO_BASKET } from '@/store/med-kits/actions';
 import RemedyList from '../catalog/RemedyList.vue';
 
 export default {
@@ -31,6 +40,11 @@ export default {
   },
   props: {
     kit: Object,
+  },
+  methods: {
+    addToBasket() {
+      this.$store.dispatch(ADD_MED_KIT_TO_BASKET, this.kit);
+    },
   },
 };
 </script>

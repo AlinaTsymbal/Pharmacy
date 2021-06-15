@@ -1,30 +1,35 @@
 <template>
-  <div class="basket-wrapper">
-    <div v-if="isEmpty">
-      <span>Basket is empty!</span>
-    </div>
-    <div v-if="!isEmpty" class="basket-content-wrapper">
-      <div class="row" style="margin-bottom: 1rem">
-        <div class="column-left">
-          <span>Найменування</span>
+  <a-popover title="Кошик" trigger="hover" placement="bottomLeft">
+    <template slot="content">
+      <div class="basket-wrapper">
+        <div v-if="isEmpty">
+          <span>Basket is empty!</span>
         </div>
-        <div class="column-right">
-          <span>Кількість</span>
+        <div v-if="!isEmpty" class="basket-content-wrapper">
+          <div class="row" style="margin-bottom: 1rem">
+            <div class="column-left">
+              <span>Найменування</span>
+            </div>
+            <div class="column-right">
+              <span>Кількість</span>
+            </div>
+          </div>
+          <div v-for="i in items" :key="i.id" class="row">
+            <div class="column-left">
+              <span>{{ i.name }}</span>
+            </div>
+            <div class="column-right">
+              <span>{{ i.amount }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer" v-if="!isEmpty">
+          <a-button type="submit" @click="onCLickHandle">Оформити замовлення</a-button>
         </div>
       </div>
-      <div v-for="i in items" :key="i.id" class="row">
-        <div class="column-left">
-          <span>{{ i.name }}</span>
-        </div>
-        <div class="column-right">
-          <span>{{ i.amount }}</span>
-        </div>
-      </div>
-    </div>
-    <div class="footer" v-if="!isEmpty">
-      <a-button type="submit" @click="onCLickHandle">Оформити замовлення</a-button>
-    </div>
-  </div>
+    </template>
+    <a type="primary" class="basket-popup-trigger"> Кошик </a>
+  </a-popover>
 </template>
 
 <script>
@@ -34,7 +39,7 @@ export default {
   name: 'Basket',
   computed: {
     isEmpty() {
-      return this.items.length === 0;
+      return this.items?.length === 0;
     },
   },
   props: {
@@ -49,15 +54,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.basket-wrapper {
+.basket-wrapper, .ant-popover-title {
   padding: 2rem;
   width: 20rem;
-  position: fixed;
-  right: 5rem;
-  top: 5rem;
   background-color: white;
-  border: 0.5px solid lightgray;
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
 

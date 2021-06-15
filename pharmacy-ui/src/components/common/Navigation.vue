@@ -18,19 +18,14 @@
       <div class="authorization-links" v-if="loggedIn">
         <a @click="hadleLogout">Вийти</a>
       </div>
-      <a-popover title="Basket" trigger="hover">
-        <template slot="content">
-          <Basket :items="items"/>
-        </template>
-        <a type="primary" class="basket-popup-trigger"> Кошик </a>
-      </a-popover>
+      <Basket :items="items" v-if="loggedIn" class="basket-popup-trigger"/>
     </div>
   </div>
 </template>
 
 <script>
 import Basket from '@/components/common/Basket';
-import { LOGOUT } from '@/store/user/actions';
+import { GET_USER, LOGOUT } from '@/store/user/actions';
 
 export default {
   name: 'Navigation',
@@ -67,6 +62,10 @@ export default {
     };
   },
   mounted() {
+    const token = localStorage.getItem('auth-token');
+    if (token) {
+      this.$store.dispatch(GET_USER);
+    }
     this.activeKey = `/${this.$router.currentRoute.path.split('/')[1]}`;
   },
   watch: {
