@@ -19,7 +19,7 @@
 import { mapGetters } from 'vuex';
 import { GET_ORDER, MAKE_ORDER } from '@/store/user/actions';
 import OdrerTable from '@/components/common/OdrerTable';
-import { GET_REMEDIES } from '@/store/catalog/actions';
+import { GET_BASKET, GET_REMEDIES } from '@/store/catalog/actions';
 
 export default {
   name: 'OrderPage',
@@ -64,6 +64,7 @@ export default {
     },
     createOrder() {
       this.$store.dispatch(MAKE_ORDER, this.localOrder);
+      this.$store.dispatch(GET_BASKET);
     },
   },
   mounted() {

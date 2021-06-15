@@ -172,6 +172,7 @@ class OrderView(APIView):
 
     def post(self, request):
         serializer = CreateOrderSerializer(data=request.data)
+        Basket.objects.get(client_id=request.user.id).delete()
 
         if not serializer.is_valid():
             return Response(status=status.HTTP_400_BAD_REQUEST)

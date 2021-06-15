@@ -4,9 +4,12 @@
     <div class="column">{{ order.client.phone }}</div>
     <div class="column">{{ order.created_at }}</div>
     <div class="column" :key="order.id"><a @click="handleClick">Замовлені ліки</a></div>
-    <div>{{ getStatus() }}</div>
-    <div v-if="order.resolved_at === null">
+    <div class="column">{{ getStatus() }}</div>
+    <div class="column" v-if="order.resolved_at === null">
       <a @click="closeOrder"> Закрити замовлення</a>
+    </div>
+    <div class="column" v-if="order.resolved_at !== null">
+      <span style="visibility: hidden">test </span>
     </div>
   </div>
 </template>
@@ -49,5 +52,9 @@ export default {
   justify-content: space-around;
   margin: 1rem auto;
   width: 100%;
+
+  .column {
+    width: 20%;
+  }
 }
 </style>
