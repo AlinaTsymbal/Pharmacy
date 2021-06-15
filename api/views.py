@@ -81,7 +81,7 @@ class RemedyDetails(APIView):
 
 
 class BasketView(APIView):
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'patch']
     model = Basket
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -129,6 +129,20 @@ class BasketView(APIView):
                 self.add_remedy(basket, r)
             return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request):
+        basket = self.model.objects.filter(client_id=request.user.id).first()
+        if basket is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        record_id = request.data.get('id', None)
+
+        if record_id is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        basket.basket_remedies.filter(id=record_id).delete()
+
+        return Response(BasketSerializer(basket).data, status.HTTP_200_OK)
 
 
 class OrderView(APIView):

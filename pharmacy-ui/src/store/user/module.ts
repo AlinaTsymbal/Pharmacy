@@ -1,5 +1,6 @@
 import { Api } from '@/utils/api';
 import {
+  DELETE_FROM_BASKET,
   GET_ORDER,
   GET_ORDERS,
   GET_USER,
@@ -14,6 +15,7 @@ import { setAuthToken, setUserData } from '@/utils/authorization';
 import router from '@/router';
 import { notification } from 'ant-design-vue';
 import { GET_BASKET } from '@/store/catalog/actions';
+import { SET_BASKET } from '@/store/catalog/mutations';
 
 interface State {
   user: any;
@@ -101,6 +103,27 @@ const actions = {
     Api.post('register', user)
       .then(() => {
         context.dispatch(LOGIN_USER, user);
+      });
+  },
+  [DELETE_FROM_BASKET]: (context: any, id: number) => {
+    Api.patch('basket?delete=true', { id })
+      .then(() => {
+        context.dispatch(GET_ORDER);
+        context.dispatch(GET_BASKET);
+        notification.success({
+          message: 'Товар видалено',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        notification.warn({
+          message: 'Товар не вдалось видалити',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
       });
   },
 };

@@ -6,6 +6,7 @@
       <div style="width: 10%"><span>Кількість</span></div>
       <div style="width: 10%"><span>Ціна в аптеці</span></div>
       <div style="width: 10%"><span>Загальна ціна</span></div>
+      <div style="width: 20%"><span>Дії</span></div>
     </div>
     <a-divider/>
     <div class="unavailable-remedies">
@@ -22,10 +23,11 @@
 </template>
 
 <script>
-import BasketItem from "@/components/common/BasketItem";
+import BasketItem from '@/components/common/BasketItem';
+
 export default {
-  name: "OdrerTable",
-  components: {BasketItem},
+  name: 'OdrerTable',
+  components: { BasketItem },
   computed: {
     availableRemedies() {
       return this.order?.remedies;
@@ -41,6 +43,7 @@ export default {
 
 <style scoped lang="scss">
 .order-table-wrapper {
+  width: 100%;
   .header {
     display: flex;
     flex-direction: row;

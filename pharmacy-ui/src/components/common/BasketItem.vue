@@ -24,12 +24,18 @@
     <div class="item-total">
       <span>{{ totalPrice }}</span>
     </div>
+    <div class="actions">
+      <a style="margin-right: 0.5rem">Замінити</a>
+      <a @click="removeFromBasket">Видалити</a>
+    </div>
   </div>
 </template>
 
 <script>
+import { DELETE_FROM_BASKET } from '@/store/user/actions';
+
 export default {
-  name: "BasketItem",
+  name: 'BasketItem',
   props: {
     item: Object,
     onSelect: Function,
@@ -45,7 +51,8 @@ export default {
     totalPrice() {
       return parseFloat(
         parseFloat(
-          this.selectedPharmacy?.price.replace(',', '.')).toFixed(2) * this.getAmount
+          this.selectedPharmacy?.price.replace(',', '.'),
+        ).toFixed(2) * this.getAmount,
       ).toFixed(2);
     },
   },
@@ -60,12 +67,15 @@ export default {
     handleSelect(value) {
       this.onSelect(this.item.id, value);
       this.selectedPharmacyId = value;
-      this.selectedPharmacy = this.item.pharmacies.find(p => p.id === this.selectedPharmacyId);
+      this.selectedPharmacy = this.item.pharmacies.find((p) => p.id === this.selectedPharmacyId);
     },
     handleAmountChange() {
       if ((this.amount) !== '') {
         this.onAmountChange(this.item.id, this.amount);
       }
+    },
+    removeFromBasket() {
+      this.$store.dispatch(DELETE_FROM_BASKET, this.item.id);
     },
   },
 };
@@ -92,6 +102,10 @@ export default {
 
   .item-total {
     width: 10%;
+  }
+
+  .actions {
+    width: 20%;
   }
 }
 </style>
