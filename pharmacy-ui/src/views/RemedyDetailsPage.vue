@@ -10,7 +10,7 @@
         <p v-for="d in pharmacies">
           {{ `${d.details.name} за адресою ${d.details.address} за ціною ${d.price}` }}
         </p>
-        <a-button style="margin-top: 14rem">Додати в кошик</a-button>
+        <a-button style="margin-top: 14rem" @click="handleClick">Додати в кошик</a-button>
       </div>
     </div>
     <div class="property">
@@ -50,7 +50,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { GET_REMEDY_DETAILS } from '@/store/catalog/actions';
+import { ADD_TO_BASKET, GET_REMEDY_DETAILS } from '@/store/catalog/actions';
 
 export default {
   name: 'RemedyDetailsPage',
@@ -87,6 +87,11 @@ export default {
     },
     side_effects() {
       return this.details?.side_effects.split('\\n');
+    },
+  },
+  methods: {
+    handleClick() {
+      this.$store.dispatch(ADD_TO_BASKET, { id: this.$route.params.id });
     },
   },
   mounted() {

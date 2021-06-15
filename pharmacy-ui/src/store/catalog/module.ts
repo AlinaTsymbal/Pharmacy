@@ -91,7 +91,12 @@ const actions = {
         });
       })
       .catch(() => {
-        router.push('authorization');
+        notification.warn({
+          message: 'Авторизуйтесь для додавання в кошик',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
       });
   },
   [GET_REMEDY_DETAILS]: (context: any, id: number) => {

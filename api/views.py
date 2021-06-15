@@ -117,8 +117,8 @@ class BasketView(APIView):
                 basket = self.model.objects.create(client=Client.objects.get(user_id=request.user.id))
             except:
                 return Response(status=status.HTTP_403_FORBIDDEN)
-        remedy_data = serializer.data.get('remedy', None)
-        remedies_data = serializer.data.get('remedies', None)
+        remedy_data = request.data.get('remedy', None)
+        remedies_data = request.data.get('remedies', None)
 
         if remedy_data is not None:
             self.add_remedy(basket, remedy_data)

@@ -1,22 +1,26 @@
 <template>
   <div class="basket-item-wrapper">
-    <div class="item-name-wrapper">
+    <div class="item-name-wrapper" v-if="!beingEdited">
       <span>{{ item.name }}</span>
     </div>
     <a-select
       :default-value="item.pharmacies[0]"
-      v-if="item"
+      v-if="item && !beingEdited"
       v-model="selectedPharmacyId"
-      style="width: 20rem"
+      style="width: 30%;"
       @change="handleSelect"
       mode="default"
     >
-      <a-select-option v-for="pharmacy in item.pharmacies" :key="pharmacy.id">
+      <a-select-option
+        v-for="pharmacy in item.pharmacies" :key="pharmacy.id">
         {{ pharmacy.name }}
       </a-select-option>
     </a-select>
+    <div v-if="beingEdited" style="width: 50%; padding-left: 5%">
+      <RemedyAutoComplete :hide-search="true" style=""/>
+    </div>
     <div class="item-amount">
-      <a-input type="number" v-model="amount" @change="handleAmountChange"></a-input>
+      <a-input type="number" v-model="amount" @change="handleAmountChange" :disabled="beingEdited"/>
     </div>
     <div class="item-price">
       <span>{{ selectedPharmacy.price }}</span>
@@ -24,19 +28,26 @@
     <div class="item-total">
       <span>{{ totalPrice }}</span>
     </div>
-    <div class="actions">
-      <a style="margin-right: 0.5rem">Замінити</a>
+    <div class="actions" v-if="!beingEdited">
+      <a style="margin-right: 0.5rem" @click="handleReplaceClick">Замінити</a>
       <a @click="removeFromBasket">Видалити</a>
+    </div>
+    <div class="actions" v-if="beingEdited">
+      <a style="margin-right: 0.5rem" @click="() => alert('NOT IMPLEMENTED')">Застосувати</a>
+      <a @click="() => alert('NOT IMPLEMENTED')">Відмінити</a>
     </div>
   </div>
 </template>
 
 <script>
 import { DELETE_FROM_BASKET } from '@/store/user/actions';
+import RemedyAutoComplete from '@/components/common/RemedyAutoComplete';
 
 export default {
   name: 'BasketItem',
+  components: { RemedyAutoComplete },
   props: {
+    remedies: Array,
     item: Object,
     onSelect: Function,
     onAmountChange: Function,
@@ -58,6 +69,7 @@ export default {
   },
   data() {
     return {
+      beingEdited: false,
       selectedPharmacyId: this.item.pharmacies[0].id,
       selectedPharmacy: this.item.pharmacies[0],
       amount: this.item.amount,
@@ -77,6 +89,9 @@ export default {
     removeFromBasket() {
       this.$store.dispatch(DELETE_FROM_BASKET, this.item.id);
     },
+    handleReplaceClick() {
+      this.beingEdited = true;
+    },
   },
 };
 </script>
@@ -94,6 +109,7 @@ export default {
 
   .item-amount {
     width: 10%;
+    margin-left: 0.5rem
   }
 
   .item-price {
@@ -107,5 +123,9 @@ export default {
   .actions {
     width: 20%;
   }
+}
+
+.visible {
+  visibility: hidden;
 }
 </style>

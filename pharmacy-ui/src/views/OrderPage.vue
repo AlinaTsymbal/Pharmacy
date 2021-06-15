@@ -19,6 +19,7 @@
 import { mapGetters } from 'vuex';
 import { GET_ORDER, MAKE_ORDER } from '@/store/user/actions';
 import OdrerTable from '@/components/common/OdrerTable';
+import { GET_REMEDIES } from '@/store/catalog/actions';
 
 export default {
   name: 'OrderPage',
@@ -67,6 +68,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(GET_ORDER);
+    this.$store.dispatch(GET_REMEDIES);
   },
   watch: {
     order(val) {
