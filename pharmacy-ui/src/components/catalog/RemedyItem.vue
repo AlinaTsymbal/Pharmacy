@@ -49,15 +49,16 @@ export default {
 <style scoped lang="scss">
 .ant-card {
   .ant-card-body {
-    height: 27rem;
-    width: 18rem;
+    height: 14rem;
+    width: 12rem;
     display: flex;
     flex-direction: column;
 
     .remedy-image-wrapper {
-      height: 25rem;
-      width: 18rem;
-
+      height: 14rem;
+      width: 12rem;
+      margin: auto;
+      
       img {
         max-width: 100%;
         max-height: 100%;
@@ -69,6 +70,8 @@ export default {
 
       .remedy-name {
         float: left;
+        font-size: 1rem;
+        font-weight: bolder;
       }
     }
 
@@ -77,6 +80,10 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      a {
+        font-size: 0.6rem;
+      }
     }
   }
 }
