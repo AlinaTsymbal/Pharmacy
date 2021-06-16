@@ -3,7 +3,7 @@
     <div class="service-name-wrapper">
       <span> Сервіс П&П Ліків</span>
     </div>
-    <a-tabs :active-key="activeKey" @change="forward">
+    <a-tabs :active-key="activeKey" @change="forward" size="large">
       <a-tab-pane key="/home" tab="Головна сторінка"/>
       <a-tab-pane key="/catalog" tab="Каталог"/>
       <a-tab-pane key="/sets" tab="Набори ліків"/>

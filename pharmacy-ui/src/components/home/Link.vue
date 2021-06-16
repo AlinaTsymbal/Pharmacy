@@ -26,6 +26,7 @@ export default {
   background-size: 30rem 30rem;
   border: 1px solid black;
   border-radius: 1rem;
+  background-position: center;
 
   .link-name-wrapper {
     margin-top: 1rem;

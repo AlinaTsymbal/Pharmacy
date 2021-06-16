@@ -7,10 +7,10 @@
       </div>
       <div class="prices-wrapper" v-if="pharmacies.length > 0">
         <h2>Можна придбати в:</h2>
-        <p v-for="d in pharmacies">
+        <p v-for="d in pharmacies" style="font-size: 1rem;">
           {{ `${d.details.name} за адресою ${d.details.address} за ціною ${d.price}` }}
         </p>
-        <a-button style="margin-top: 14rem" @click="handleClick">Додати в кошик</a-button>
+        <a-button style="position: relative;" @click="handleClick">Додати в кошик</a-button>
       </div>
     </div>
     <div class="property">
@@ -147,6 +147,7 @@ export default {
 
     span {
       text-align: left;
+      font-size: 1rem;
     }
 
     h2 {
