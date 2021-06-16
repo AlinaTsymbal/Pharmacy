@@ -18,6 +18,13 @@
       <div class="authorization-links" v-if="loggedIn">
         <a @click="hadleLogout">Вийти</a>
       </div>
+      <a
+        v-if="loggedIn && !isAdmin"
+        class="profile-link" style="margin-left: 1.5rem"
+        @click="redirectProfile"
+      >
+        Профіль
+      </a>
       <Basket :items="items" v-if="loggedIn && !isAdmin" class="basket-popup-trigger"/>
     </div>
   </div>
@@ -46,11 +53,14 @@ export default {
   },
   methods: {
     redirectLogin() {
-      this.$router.push('authorization');
+      this.$router.push('/authorization');
     },
     forward(key) {
       this.activeKey = key;
       this.$router.push(key);
+    },
+    redirectProfile() {
+      this.$router.push('/profile');
     },
     hadleLogout() {
       this.$store.dispatch(LOGOUT);

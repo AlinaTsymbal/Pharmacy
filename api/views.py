@@ -12,7 +12,7 @@ from api.serializers import ShortRemedySerializer, CategorySerializer, RemedySet
 
 
 class Me(APIView):
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'patch']
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
@@ -25,6 +25,18 @@ class Me(APIView):
                 AdminSerializer(Admin.objects.filter(user_id=request.user.id).first()).data,
                 status.HTTP_200_OK
             )
+
+    def patch(self, request):
+        user = Client.objects.get(user_id=request.user.id)
+        user.phone = request.data.get('phone')
+        user.address = request.data.get('address')
+        user.first_name = request.data.get('first_name')
+        user.last_name = request.data.get('last_name')
+        user.email = request.data.get('email')
+
+        user.save()
+
+        return Response(ClientSerializer(user).data, status.HTTP_200_OK)
 
 
 class Categories(APIView):

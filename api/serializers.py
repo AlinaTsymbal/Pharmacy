@@ -163,6 +163,7 @@ class ClientSerializer(serializers.ModelSerializer):
         data['type'] = 'CLIENT'
         data['first_name'] = instance.user.first_name
         data['last_name'] = instance.user.last_name
+        data['email'] = instance.user.email
 
         return data
 

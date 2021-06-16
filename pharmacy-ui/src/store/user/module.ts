@@ -7,7 +7,7 @@ import {
   GET_USER,
   LOGIN_USER,
   LOGOUT,
-  MAKE_ORDER, REGISTER, REPLACE_IN_BASKET,
+  MAKE_ORDER, REGISTER, REPLACE_IN_BASKET, UPDATE_USER,
 } from '@/store/user/actions';
 import {
   SET_ORDER, SET_ORDERS, SET_TOKEN, SET_USER,
@@ -16,10 +16,10 @@ import { setAuthToken, setUserData } from '@/utils/authorization';
 import router from '@/router';
 import { notification } from 'ant-design-vue';
 import { GET_BASKET } from '@/store/catalog/actions';
-import { SET_BASKET } from '@/store/catalog/mutations';
+import ClientModel from '@/models/ClientModel';
 
 interface State {
-  user: any;
+  user: ClientModel | null;
   token: string | null;
   order: any;
   orders: any[];
@@ -76,7 +76,7 @@ const actions = {
       amount: r.amount,
     }));
     Api.post('order', { remedies: params })
-      .then((response) => {
+      .then(() => {
         router.push('home');
         notification.success({
           message: 'Замовлення офомленно',
@@ -168,10 +168,30 @@ const actions = {
         });
       });
   },
+  [UPDATE_USER]: (context: any, user: ClientModel) => {
+    Api.patch('me', user)
+      .then((response) => {
+        context.commit(SET_USER, response.data);
+        notification.success({
+          message: 'Дані успішно змінено',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      })
+      .catch(() => {
+        notification.warn({
+          message: 'Дані не вдалось змінити',
+          description: '',
+          placement: 'topRight',
+          duration: 4.5,
+        });
+      });
+  },
 };
 
 const mutations = {
-  [SET_USER](state: State, user: any) {
+  [SET_USER](state: State, user: ClientModel) {
     state.user = user;
   },
   [SET_TOKEN](state: State, token: string | null) {

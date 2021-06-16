@@ -10,6 +10,7 @@ import AuthorizationPage from '@/views/AuthorizationPage.vue';
 import OrderPage from '@/views/OrderPage.vue';
 import OrdersPage from '@/views/OrdersPage.vue';
 import RemedyDetailsPage from '@/views/RemedyDetailsPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
 import { isAuthenticated } from '@/utils/authorization';
 
 Vue.use(VueRouter);
@@ -67,6 +68,11 @@ const routes: Array<RouteConfig> = [
         path: 'remedies/:id',
         name: 'Remedy Details',
         component: RemedyDetailsPage,
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: ProfilePage,
       },
     ],
   },
