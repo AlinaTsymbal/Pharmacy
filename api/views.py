@@ -30,9 +30,10 @@ class Me(APIView):
         user = Client.objects.get(user_id=request.user.id)
         user.phone = request.data.get('phone')
         user.address = request.data.get('address')
-        user.first_name = request.data.get('first_name')
-        user.last_name = request.data.get('last_name')
-        user.email = request.data.get('email')
+        user.user.first_name = request.data.get('first_name')
+        user.user.last_name = request.data.get('last_name')
+        user.user.email = request.data.get('email')
+        user.user.save()
 
         user.save()
 

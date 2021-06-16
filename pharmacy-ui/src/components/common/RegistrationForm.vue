@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Register</h2>
+    <h2>Зареєструватися</h2>
     <a-card>
       <a-form
         style="width: 30rem"
@@ -40,7 +40,7 @@
             class="login-form-button"
             style="width: 100%"
           >
-            Register
+            Реєстрація
           </a-button>
         </a-form-item>
       </a-form>

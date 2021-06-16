@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Авторизація</h2>
     <a-card>
       <a-form
         style="width: 30rem"
@@ -39,7 +39,7 @@
             html-type="submit"
             class="login-form-button"
           >
-            Log in
+            Ввіти
           </a-button>
         </a-form-item>
       </a-form>
